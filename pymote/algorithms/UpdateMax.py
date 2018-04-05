@@ -7,34 +7,23 @@ class MaxFind(FloodingUpdate):
     default_params = {'temperatureKey':'Temperature','neighborsKey': 'Neighbors','maxKey':'Max'}
 
     def initiator_condition(self, node):
-#svi će biti iniciatori        
+        #svi će biti iniciatori        
         node.compositeSensor=(TempSensor,'Temperature')
         node.memory[self.temperatureKey]=node.compositeSensor.read()['Temperature']
-        return node.memory[self.temperatureKey] is not None
-        
-#        if self.dataKey in node.memory:
-##            node.memory[self.neighborsKey] = node.compositeSensor.read()['Neighbor']
-##            node.compositeSensor = (TempSensor, 'Temperature', NeighborsSensor, 'Neighbor' )       
-##            node.memory[self.temperatureKey] = node.compositeSensor.read()['Temperature']
-#            node.compositeSensor=(TempSensor,'Temperature')            
-#            node.memory[self.temperatureKey]=node.TempSensor.read()
-#            return True
-#        else:
-#            return False
+        node.memory[self.maxKey]=node.memory[self.temperatureKey]      
+        #trenutna najveća je njegova, jedina koju ima    
+        return node.memory[self.maxKey] is not None
 
     def initiator_data(self, node):
-        return node.memory[self.temperatureKey]
-        #ovdije ne smije biti read, jer bi svaki puta očitao drugačiju temperaturu
-               
-       
-
+        return node.memory[self.maxKey]
+        #ovdje ne smije biti read, jer bi svaki puta očitao drugačiju temperaturu
+                      
     def handle_flood_message(self, node, message):
-        if message.data>node.memory[self.temperatureKey]:
+        
+        if message.data > node.memory[self.maxKey]:
             node.memory[self.maxKey]=message.data
             return message.data
-        #else:
-        #    return node.memory[self.temperatureKey]
-        
-                
-        #usporedi sa svojom temperaturom
-        #message=veća
+
+
+    STATUS = {'FLOODING':FloodingUpdate.STATUS.get('FLOODING'),  # init,term
+              }
