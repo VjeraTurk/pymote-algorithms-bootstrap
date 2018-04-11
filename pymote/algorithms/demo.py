@@ -4,11 +4,12 @@
 from pymote.networkgenerator import NetworkGenerator
 from pymote.simulation import Simulation
 
+from pymote.algorithms.UpdateMax import MaxFind
+
 net_gen = NetworkGenerator(5)
 
 net = net_gen.generate_random_network()
 
-from pymote.algorithms.UpdateMax import MaxFind 
 net.algorithms = ( (MaxFind, {'dataKey':'D'}), )
 
 #nije potrebno, po algoritmu su svi init
