@@ -1,0 +1,36 @@
+PROCESSING
+	Receiving(Notification)
+	begin
+		send(Notification) to N(x)−parent;
+		if v(x) =Received Value then
+			become MINIMUM;
+		else
+			become LARGE;
+		endif
+	end
+	
+Procedure Initialize
+begin
+	min:=v(x);
+end
+
+Procedure Prepare Message
+begin
+	M:=("Saturation", min);
+end
+
+Procedure Process Message
+begin
+	min:= MIN{min, Received Value};
+end
+
+Procedure Resolve
+begin
+	Notification:= ("Resolution", min);
+	send(Notification) to N(x)−parent;
+	if v(x) =min then
+		become MINIMUM;
+	else
+		become LARGE;
+	endif
+end

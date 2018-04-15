@@ -1,0 +1,622 @@
+2018-04-15 14:57:00 - DEBUG:[simulation.py] Simulation 0x10b0de40 created successfully.
+2018-04-15 15:05:56 - DEBUG:[simulation.py] Simulation 0x10be68a0 created successfully.
+2018-04-15 15:05:56 - WARNING:[simulation.py] Initializer didn't send INI message
+2018-04-15 15:05:56 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 15:06:12 - DEBUG:[simulation.py] Simulation 0x10c4d2b0 created successfully.
+2018-04-15 15:06:12 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:07:43 - DEBUG:[simulation.py] Simulation 0x10caf620 created successfully.
+2018-04-15 15:08:09 - DEBUG:[simulation.py] Simulation 0x10cafa80 created successfully.
+2018-04-15 15:08:09 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:08:44 - DEBUG:[simulation.py] Simulation 0x10cafa30 created successfully.
+2018-04-15 15:08:44 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:12:29 - DEBUG:[simulation.py] Simulation 0x10c68210 created successfully.
+2018-04-15 15:12:29 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:13:09 - DEBUG:[simulation.py] Simulation 0x10cb4a58 created successfully.
+2018-04-15 15:13:09 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:20:11 - DEBUG:[simulation.py] Simulation 0x10cb4490 created successfully.
+2018-04-15 15:20:11 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:21:51 - DEBUG:[simulation.py] Simulation 0x10c68580 created successfully.
+2018-04-15 15:21:51 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:23:48 - DEBUG:[simulation.py] Simulation 0x10c24a80 created successfully.
+2018-04-15 15:23:48 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:25:27 - DEBUG:[simulation.py] Simulation 0x10c3f490 created successfully.
+2018-04-15 15:25:27 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:26:02 - DEBUG:[simulation.py] Simulation 0x10c3a940 created successfully.
+2018-04-15 15:26:02 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:28:44 - DEBUG:[simulation.py] Simulation 0x10fad0a8 created successfully.
+2018-04-15 15:28:44 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:28:44 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:28:44 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:29:22 - DEBUG:[simulation.py] Simulation 0x10c3f8c8 created successfully.
+2018-04-15 15:29:22 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:29:22 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:29:22 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:30:32 - DEBUG:[simulation.py] Simulation 0x10c3a030 created successfully.
+2018-04-15 15:30:32 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:30:32 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:30:32 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:33:02 - DEBUG:[simulation.py] Simulation 0x10cb68c8 created successfully.
+2018-04-15 15:33:02 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:33:02 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:33:02 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:33:58 - DEBUG:[simulation.py] Simulation 0x10fad6e8 created successfully.
+2018-04-15 15:33:58 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:33:58 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:33:58 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:33:58 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:33:58 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:35:21 - DEBUG:[simulation.py] Simulation 0x10c4d0d0 created successfully.
+2018-04-15 15:35:21 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] Simulation 0x10fadd00 created successfully.
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 13 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Step 14 finished
+2018-04-15 15:37:25 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 15:37:25 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:37:51 - DEBUG:[simulation.py] Simulation 0x10c4d288 created successfully.
+2018-04-15 15:37:51 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:37:58 - DEBUG:[simulation.py] Simulation 0x10c4d0d0 created successfully.
+2018-04-15 15:37:58 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:39:58 - DEBUG:[simulation.py] Simulation 0x10f9f670 created successfully.
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 15:39:58 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 15:39:59 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 15:39:59 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 15:39:59 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 15:39:59 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:45:44 - DEBUG:[simulation.py] Simulation 0x10c3a738 created successfully.
+2018-04-15 15:45:44 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:45:44 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:45:44 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:45:44 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:45:44 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:46:17 - DEBUG:[simulation.py] Simulation 0x10de9cb0 created successfully.
+2018-04-15 15:46:17 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:46:17 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:46:17 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:47:40 - DEBUG:[simulation.py] Simulation 0x10dfa120 created successfully.
+2018-04-15 15:47:40 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:47:40 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:47:40 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:47:40 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:48:17 - DEBUG:[simulation.py] Simulation 0x10f9f710 created successfully.
+2018-04-15 15:48:17 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:48:17 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:48:17 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:48:17 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:48:17 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:48:17 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:48:17 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] Simulation 0x10b24648 created successfully.
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 13 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 14 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 15 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 16 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Step 17 finished
+2018-04-15 15:49:17 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 15:49:17 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:51:16 - DEBUG:[simulation.py] Simulation 0x10f9f508 created successfully.
+2018-04-15 15:51:16 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:51:16 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:51:16 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:51:16 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:52:05 - DEBUG:[simulation.py] Simulation 0x10bd5e18 created successfully.
+2018-04-15 15:52:05 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:52:05 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:52:05 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:52:05 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:52:05 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:52:05 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:52:05 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 15:52:05 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:52:19 - DEBUG:[simulation.py] Simulation 0x10fa6aa8 created successfully.
+2018-04-15 15:52:19 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:52:24 - DEBUG:[simulation.py] Simulation 0x10fa6e18 created successfully.
+2018-04-15 15:52:24 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:52:35 - DEBUG:[simulation.py] Simulation 0x12399738 created successfully.
+2018-04-15 15:52:35 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:52:46 - DEBUG:[simulation.py] Simulation 0x10bd5558 created successfully.
+2018-04-15 15:52:46 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:53:09 - DEBUG:[simulation.py] Simulation 0x123cbe68 created successfully.
+2018-04-15 15:53:09 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:54:37 - DEBUG:[simulation.py] Simulation 0x109b56e8 created successfully.
+2018-04-15 15:54:37 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:54:37 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:54:37 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:54:37 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:56:37 - DEBUG:[simulation.py] Simulation 0x109b5f80 created successfully.
+2018-04-15 15:56:37 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:56:37 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:56:37 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:56:37 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:57:04 - DEBUG:[simulation.py] Simulation 0x10ca2620 created successfully.
+2018-04-15 15:57:04 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:57:04 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:57:04 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:57:04 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:57:04 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:57:04 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:57:28 - DEBUG:[simulation.py] Simulation 0x10ca56e8 created successfully.
+2018-04-15 15:57:28 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:57:28 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:57:28 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:57:28 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:57:28 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:57:28 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:58:37 - DEBUG:[simulation.py] Simulation 0x10ca5da0 created successfully.
+2018-04-15 15:58:37 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:58:37 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:58:37 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:58:37 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:58:37 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:58:37 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:58:37 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 15:58:37 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 15:58:37 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:58:56 - DEBUG:[simulation.py] Simulation 0x10ca52b0 created successfully.
+2018-04-15 15:58:56 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:02 - DEBUG:[simulation.py] Simulation 0x10ca5940 created successfully.
+2018-04-15 15:59:02 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:59:02 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:59:02 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:59:02 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:59:02 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:59:02 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:59:02 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 15:59:02 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:13 - DEBUG:[simulation.py] Simulation 0x10ca2f58 created successfully.
+2018-04-15 15:59:13 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:15 - DEBUG:[simulation.py] Simulation 0x10ca2968 created successfully.
+2018-04-15 15:59:15 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:16 - DEBUG:[simulation.py] Simulation 0x10ca2bc0 created successfully.
+2018-04-15 15:59:16 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:17 - DEBUG:[simulation.py] Simulation 0x10ca26c0 created successfully.
+2018-04-15 15:59:17 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:18 - DEBUG:[simulation.py] Simulation 0x10ca5cd8 created successfully.
+2018-04-15 15:59:18 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:19 - DEBUG:[simulation.py] Simulation 0x10ca5f08 created successfully.
+2018-04-15 15:59:19 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:20 - DEBUG:[simulation.py] Simulation 0x10ca5fd0 created successfully.
+2018-04-15 15:59:20 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:21 - DEBUG:[simulation.py] Simulation 0x10ca2328 created successfully.
+2018-04-15 15:59:21 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:22 - DEBUG:[simulation.py] Simulation 0x10ca2648 created successfully.
+2018-04-15 15:59:22 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:23 - DEBUG:[simulation.py] Simulation 0x10ca2a30 created successfully.
+2018-04-15 15:59:23 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:23 - DEBUG:[simulation.py] Simulation 0x10ca5418 created successfully.
+2018-04-15 15:59:23 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:24 - DEBUG:[simulation.py] Simulation 0x10ca5f80 created successfully.
+2018-04-15 15:59:24 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:25 - DEBUG:[simulation.py] Simulation 0x10ca59e0 created successfully.
+2018-04-15 15:59:25 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:26 - DEBUG:[simulation.py] Simulation 0x10ca5d00 created successfully.
+2018-04-15 15:59:26 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:26 - DEBUG:[simulation.py] Simulation 0x10ca23c8 created successfully.
+2018-04-15 15:59:26 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:27 - DEBUG:[simulation.py] Simulation 0x10ca5148 created successfully.
+2018-04-15 15:59:27 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:27 - DEBUG:[simulation.py] Simulation 0x10ca5d78 created successfully.
+2018-04-15 15:59:27 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:34 - DEBUG:[simulation.py] Simulation 0x10d16350 created successfully.
+2018-04-15 15:59:34 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 15:59:44 - DEBUG:[simulation.py] Simulation 0x10ca5f58 created successfully.
+2018-04-15 15:59:44 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 15:59:44 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 15:59:44 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 15:59:44 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 15:59:44 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 15:59:44 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 15:59:44 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 15:59:44 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 15:59:44 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:01:39 - DEBUG:[simulation.py] Simulation 0x10d165d0 created successfully.
+2018-04-15 16:01:39 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:01:39 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 16:01:39 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 16:01:39 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 16:01:39 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 16:01:39 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 16:01:39 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 16:01:39 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 16:01:39 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:01:43 - DEBUG:[simulation.py] Simulation 0x10d16d78 created successfully.
+2018-04-15 16:01:43 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:01:55 - DEBUG:[simulation.py] Simulation 0x10d428c8 created successfully.
+2018-04-15 16:01:55 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:01:55 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 16:01:55 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 16:01:55 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 16:01:55 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 16:01:55 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 16:01:55 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 16:01:55 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:02:48 - DEBUG:[simulation.py] Simulation 0x10d42fa8 created successfully.
+2018-04-15 16:02:48 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:06:17 - DEBUG:[simulation.py] Simulation 0x10cd3be8 created successfully.
+2018-04-15 16:06:17 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:07:43 - DEBUG:[simulation.py] Simulation 0x10cd39b8 created successfully.
+2018-04-15 16:07:43 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:09:45 - DEBUG:[simulation.py] Simulation 0x10cd6760 created successfully.
+2018-04-15 16:09:45 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:09:45 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 16:09:45 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 16:09:45 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 16:09:45 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 16:09:45 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 16:09:45 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 16:09:45 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:51 - DEBUG:[simulation.py] Simulation 0x10cd3d50 created successfully.
+2018-04-15 16:09:51 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:52 - DEBUG:[simulation.py] Simulation 0x10cd3cd8 created successfully.
+2018-04-15 16:09:52 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:53 - DEBUG:[simulation.py] Simulation 0x10cd6760 created successfully.
+2018-04-15 16:09:53 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:54 - DEBUG:[simulation.py] Simulation 0x10cd6940 created successfully.
+2018-04-15 16:09:54 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:55 - DEBUG:[simulation.py] Simulation 0x10cd6c10 created successfully.
+2018-04-15 16:09:55 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:56 - DEBUG:[simulation.py] Simulation 0x10cd6788 created successfully.
+2018-04-15 16:09:56 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:57 - DEBUG:[simulation.py] Simulation 0x10cd6c88 created successfully.
+2018-04-15 16:09:57 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:57 - DEBUG:[simulation.py] Simulation 0x10cd69b8 created successfully.
+2018-04-15 16:09:57 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:58 - DEBUG:[simulation.py] Simulation 0x10cd60f8 created successfully.
+2018-04-15 16:09:58 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:09:59 - DEBUG:[simulation.py] Simulation 0x10cd67d8 created successfully.
+2018-04-15 16:09:59 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:10:00 - DEBUG:[simulation.py] Simulation 0x10cd6490 created successfully.
+2018-04-15 16:10:00 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 16:10:10 - DEBUG:[simulation.py] Simulation 0x10cd6e18 created successfully.
+2018-04-15 16:10:10 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:10:46 - DEBUG:[simulation.py] Simulation 0x10cfb828 created successfully.
+2018-04-15 16:10:46 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:30:17 - DEBUG:[simulation.py] Simulation 0x10d42418 created successfully.
+2018-04-15 16:31:24 - DEBUG:[simulation.py] Simulation 0x10ca5918 created successfully.
+2018-04-15 16:34:19 - DEBUG:[simulation.py] Simulation 0x10ca5a08 created successfully.
+2018-04-15 16:35:00 - DEBUG:[simulation.py] Simulation 0x10cd3eb8 created successfully.
+2018-04-15 16:36:26 - DEBUG:[simulation.py] Simulation 0x10d42328 created successfully.
+2018-04-15 16:36:26 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:38:38 - DEBUG:[simulation.py] Simulation 0x10d05be8 created successfully.
+2018-04-15 16:38:38 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:53:09 - DEBUG:[simulation.py] Simulation 0x1117f878 created successfully.
+2018-04-15 16:53:09 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:54:12 - DEBUG:[simulation.py] Simulation 0x10d05968 created successfully.
+2018-04-15 16:54:12 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:55:13 - DEBUG:[simulation.py] Simulation 0x11172198 created successfully.
+2018-04-15 16:55:13 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 16:56:53 - DEBUG:[simulation.py] Simulation 0x111727b0 created successfully.
+2018-04-15 16:58:07 - DEBUG:[simulation.py] Simulation 0x1118d4b8 created successfully.
+2018-04-15 16:59:24 - DEBUG:[simulation.py] Simulation 0x1118dcd8 created successfully.
+2018-04-15 17:01:17 - DEBUG:[simulation.py] Simulation 0x10d05238 created successfully.
+2018-04-15 17:02:17 - DEBUG:[simulation.py] Simulation 0x111725a8 created successfully.
+2018-04-15 17:02:51 - DEBUG:[simulation.py] Simulation 0x1118d788 created successfully.
+2018-04-15 17:03:41 - DEBUG:[simulation.py] Simulation 0x1118da58 created successfully.
+2018-04-15 17:05:23 - DEBUG:[simulation.py] Simulation 0x1118d558 created successfully.
+2018-04-15 17:06:09 - DEBUG:[simulation.py] Simulation 0x111725f8 created successfully.
+2018-04-15 17:07:21 - DEBUG:[simulation.py] Simulation 0x10fbd760 created successfully.
+2018-04-15 17:07:21 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:08:25 - DEBUG:[simulation.py] Simulation 0x11399f08 created successfully.
+2018-04-15 17:08:53 - DEBUG:[simulation.py] Simulation 0x11399af8 created successfully.
+2018-04-15 17:09:22 - DEBUG:[simulation.py] Simulation 0x11172378 created successfully.
+2018-04-15 17:09:43 - DEBUG:[simulation.py] Simulation 0x107c08c8 created successfully.
+2018-04-15 17:09:56 - DEBUG:[simulation.py] Simulation 0x10c85cb0 created successfully.
+2018-04-15 17:10:13 - DEBUG:[simulation.py] Simulation 0x10c85cd8 created successfully.
+2018-04-15 17:10:50 - DEBUG:[simulation.py] Simulation 0x1091cdc8 created successfully.
+2018-04-15 17:11:09 - DEBUG:[simulation.py] Simulation 0x10c85828 created successfully.
+2018-04-15 17:11:26 - DEBUG:[simulation.py] Simulation 0x11364df0 created successfully.
+2018-04-15 17:15:15 - DEBUG:[simulation.py] Simulation 0x1138bf30 created successfully.
+2018-04-15 17:18:00 - DEBUG:[simulation.py] Simulation 0x10d16238 created successfully.
+2018-04-15 17:19:21 - DEBUG:[simulation.py] Simulation 0x11364378 created successfully.
+2018-04-15 17:21:15 - DEBUG:[simulation.py] Simulation 0x1122cdf0 created successfully.
+2018-04-15 17:22:37 - DEBUG:[simulation.py] Simulation 0x1121bd28 created successfully.
+2018-04-15 17:23:41 - DEBUG:[simulation.py] Simulation 0x1121bd78 created successfully.
+2018-04-15 17:23:41 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:23:59 - DEBUG:[simulation.py] Simulation 0x1122cfa8 created successfully.
+2018-04-15 17:23:59 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:23:59 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:23:59 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:25:29 - DEBUG:[simulation.py] Simulation 0x1138b990 created successfully.
+2018-04-15 17:25:29 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:25:29 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:25:29 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:29:39 - DEBUG:[simulation.py] Simulation 0x1122dd50 created successfully.
+2018-04-15 17:29:39 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:29:39 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:29:39 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:29:39 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:29:39 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:29:39 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:29:39 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 17:29:39 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:29:39 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:34:54 - DEBUG:[simulation.py] Simulation 0x111c6eb8 created successfully.
+2018-04-15 17:34:54 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:34:54 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:34:54 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:34:54 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:34:54 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:34:54 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:34:54 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:34:54 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:36:53 - DEBUG:[simulation.py] Simulation 0x12cb9c88 created successfully.
+2018-04-15 17:36:53 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:36:53 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:36:53 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:36:53 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:36:53 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:36:53 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:36:53 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 17:36:53 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:36:53 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:40:40 - DEBUG:[simulation.py] Simulation 0x12e28d50 created successfully.
+2018-04-15 17:40:40 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:40:40 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:40:40 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:40:40 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:40:40 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:40:40 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:40:40 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 17:40:40 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:40:40 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:43:13 - DEBUG:[simulation.py] Simulation 0x12cb9fd0 created successfully.
+2018-04-15 17:43:13 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:43:13 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:43:13 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:43:13 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:43:13 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:43:13 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:43:13 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 17:43:13 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:43:13 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:46:43 - DEBUG:[simulation.py] Simulation 0x12c68c60 created successfully.
+2018-04-15 17:46:43 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:46:43 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:46:43 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:47:34 - DEBUG:[simulation.py] Simulation 0x12e3d058 created successfully.
+2018-04-15 17:47:34 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:48:12 - DEBUG:[simulation.py] Simulation 0x12e587b0 created successfully.
+2018-04-15 17:48:12 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:48:12 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:48:12 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:48:12 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:48:12 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:48:12 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:48:12 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:48:12 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:48:21 - DEBUG:[simulation.py] Simulation 0x12e3d670 created successfully.
+2018-04-15 17:48:21 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:48:24 - DEBUG:[simulation.py] Simulation 0x12e3d8f0 created successfully.
+2018-04-15 17:48:24 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:48:26 - DEBUG:[simulation.py] Simulation 0x12e588f0 created successfully.
+2018-04-15 17:48:26 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:48:36 - DEBUG:[simulation.py] Simulation 0x12e58350 created successfully.
+2018-04-15 17:48:36 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:50:24 - DEBUG:[simulation.py] Simulation 0x12e51c60 created successfully.
+2018-04-15 17:50:24 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:50:24 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:50:24 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:50:24 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:50:24 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:50:24 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:50:24 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:50:24 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:50:42 - DEBUG:[simulation.py] Simulation 0x12e41b48 created successfully.
+2018-04-15 17:50:42 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:50:42 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:50:42 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:51:22 - DEBUG:[simulation.py] Simulation 0x12e41e40 created successfully.
+2018-04-15 17:51:22 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:51:22 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:51:22 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:51:22 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:51:22 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:51:22 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:51:22 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 17:51:22 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:51:22 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:52:57 - DEBUG:[simulation.py] Simulation 0x10a2b990 created successfully.
+2018-04-15 17:52:57 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 17:52:57 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 17:52:57 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 17:52:57 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 17:52:57 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 17:52:57 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 17:52:57 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 17:52:57 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:53:21 - DEBUG:[simulation.py] Simulation 0x10a2b210 created successfully.
+2018-04-15 17:53:21 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 17:53:28 - DEBUG:[simulation.py] Simulation 0x10a2b440 created successfully.
+2018-04-15 17:53:28 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 18:36:36 - DEBUG:[simulation.py] Simulation 0x10ad2530 created successfully.
+2018-04-15 18:36:36 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 18:36:36 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 18:36:36 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 18:36:36 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 18:36:36 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 18:36:36 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 18:36:36 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 18:36:36 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 18:36:49 - DEBUG:[simulation.py] Simulation 0x10b92cb0 created successfully.
+2018-04-15 18:36:49 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 18:36:55 - DEBUG:[simulation.py] Simulation 0x10ac7df0 created successfully.
+2018-04-15 18:36:55 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 18:36:55 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 18:36:55 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 18:36:55 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 18:36:55 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 18:36:55 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 18:36:55 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 18:36:55 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 18:36:55 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 18:44:15 - DEBUG:[simulation.py] Simulation 0x10aa8968 created successfully.
+2018-04-15 18:44:15 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 18:45:36 - DEBUG:[simulation.py] Simulation 0x10b579b8 created successfully.
+2018-04-15 18:45:36 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 18:45:36 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 18:45:36 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 18:45:36 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 18:45:36 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 18:45:36 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 18:45:36 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 18:45:36 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 18:45:36 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:02:27 - DEBUG:[simulation.py] Simulation 0x12363aa8 created successfully.
+2018-04-15 19:02:27 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:02:55 - DEBUG:[simulation.py] Simulation 0x10a27990 created successfully.
+2018-04-15 19:02:55 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:03:32 - DEBUG:[simulation.py] Simulation 0x10b08f58 created successfully.
+2018-04-15 19:03:32 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:03:49 - DEBUG:[simulation.py] Simulation 0x10aff468 created successfully.
+2018-04-15 19:03:49 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:04:07 - DEBUG:[simulation.py] Simulation 0x10b2b8a0 created successfully.
+2018-04-15 19:04:07 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:04:07 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:04:07 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:04:07 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:04:07 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:04:07 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:04:07 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 19:04:07 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 19:04:07 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:13:12 - DEBUG:[simulation.py] Simulation 0x10d81d00 created successfully.
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 19:13:12 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 19:13:12 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:17:21 - DEBUG:[simulation.py] Simulation 0x10af2148 created successfully.
+2018-04-15 19:17:21 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:17:21 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:17:21 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:17:21 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:17:21 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:17:21 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] Simulation 0x10b3cd78 created successfully.
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 19:18:03 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 19:18:03 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:18:51 - DEBUG:[simulation.py] Simulation 0x10c483c8 created successfully.
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 19:18:51 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 19:18:51 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:21:17 - DEBUG:[simulation.py] Simulation 0x10a91eb8 created successfully.
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 19:21:17 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 19:21:17 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:21:39 - DEBUG:[simulation.py] Simulation 0x10af2c38 created successfully.
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 19:21:39 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 19:21:39 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:22:21 - DEBUG:[simulation.py] Simulation 0x10c39a30 created successfully.
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 19:22:21 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 19:22:21 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
+2018-04-15 19:24:12 - DEBUG:[simulation.py] Simulation 0x1087caf8 created successfully.
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 1 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 2 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 3 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 4 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 5 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 6 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 7 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 8 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 9 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 10 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 11 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Step 12 finished
+2018-04-15 19:24:12 - DEBUG:[simulation.py] [MaxFind] Algorithm finished
+2018-04-15 19:24:12 - INFO:[simulation.py] Simulation has finished. There are no algorithms left to run. To run it from the start use sim.reset().
