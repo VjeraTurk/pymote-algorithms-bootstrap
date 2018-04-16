@@ -6,16 +6,16 @@ class Saturation(NodeAlgorithm):
     
     #required_params = ('informationKey', 'treeKey',) # must have ','
     required_params = ('informationKey',) # must have ','
-    default_params = {'neighborsKey': 'Neighbors','parentKey' : 'Parent', 'treeKey': 'Tree'}
+    default_params = {'treeNeighbors': 'Neighbors','parentKey' : 'Parent', 'treeKey': 'Tree'}
 
-    #TODO: treeKey now serves as neighborsKey, and neighborsKey as treeKey - necessary to SWAP them
+    #TODO: treeKey now serves as treeNeighbors, and treeNeighbors as treeKey - necessary to SWAP them
     #      should treeKey be in required_params?!
     
     def initializer(self):
         ini_nodes = []
         for node in self.network.nodes():
-            node.memory[self.neighborsKey] = node.compositeSensor.read()['Neighbors']
-            node.memory[self.treeKey]= list(node.memory[self.neighborsKey])
+            node.memory[self.treeNeighbors] = node.compositeSensor.read()['Neighbors']
+            node.memory[self.treeKey]= list(node.memory[self.treeNeighbors])
             self.initialize(node)
             node.status = 'AVAILABLE'
             if self.informationKey in node.memory:
@@ -31,8 +31,8 @@ class Saturation(NodeAlgorithm):
         if message.header == NodeAlgorithm.INI: #Spontaneously
             node.send(Message(header='Activate', data='Activate'))
             #initialize() mislim da ipak treba biti u initalizeru
-            if len(node.memory[self.neighborsKey])==1 : #ako je čvor list
-                node.memory[self.parentKey] = list(node.memory[self.neighborsKey])
+            if len(node.memory[self.treeNeighbors])==1 : #ako je čvor list
+                node.memory[self.parentKey] = list(node.memory[self.treeNeighbors])
                 updated_data=self.prepare_message(node)
                 node.send(Message(header='M', data = updated_data, destination = node.memory[self.parentKey]))
                 node.status = 'PROCESSING'
@@ -40,15 +40,15 @@ class Saturation(NodeAlgorithm):
                 node.status = 'ACTIVE' #izvrši se
                 
         if message.header == 'Activate':
-            destination_nodes = list(node.memory[self.neighborsKey])
+            destination_nodes = list(node.memory[self.treeNeighbors])
             print "message.source:"
             print type(message.source)
             print message.source
             
             node.send(Message(header='Activate', data='Activate', destination=destination_nodes.remove(message.source)))
             #initialize() mislim da ipak treba biti u initalizeru            
-            if len(node.memory[self.neighborsKey])==1 :
-                node.memory[self.parentKey] = list(node.memory[self.neighborsKey])                
+            if len(node.memory[self.treeNeighbors])==1 :
+                node.memory[self.parentKey] = list(node.memory[self.treeNeighbors])                
                 updated_data=self.prepare_message(node)
                 node.send(Message(header='M', data=updated_data, destination=node.memory[self.parentKey]))
                 #dal prepare?
@@ -62,12 +62,12 @@ class Saturation(NodeAlgorithm):
         if message.header=='M':
             self.process_message(node,message)
             ###ključno
-            node.memory[self.neighborsKey].remove(message.source) # ne radi?
+            node.memory[self.treeNeighbors].remove(message.source) # ne radi?
 
             ##izgleda da neki ostanu bez susjeda kao posljedica ovoga, ne, trebali bi uci u processing jopš u availabele
             
-            if len(node.memory[self.neighborsKey])==1 :
-                node.memory[self.parentKey] = list(node.memory[self.neighborsKey])                
+            if len(node.memory[self.treeNeighbors])==1 :
+                node.memory[self.parentKey] = list(node.memory[self.treeNeighbors])                
                 updated_data=self.prepare_message(node)
                 node.send(Message(header='M', data=updated_data, destination=node.memory[self.parentKey]))
                 node.status = 'PROCESSING'
