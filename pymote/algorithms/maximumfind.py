@@ -15,7 +15,7 @@ class MaxFind(Saturation):
             self.resolve(node)
             
         if message.header=="Notification":
-            destination_nodes = node.memory[self.treeKey]
+            destination_nodes = node.memory[self.neighborsKey]
             print destination_nodes
             print node.memory[self.parentKey]
             print type(node.memory[self.parentKey])
@@ -35,21 +35,17 @@ class MaxFind(Saturation):
         node.compositeSensor=(TempSensor,'Temperature')
         node.memory[self.temperatureKey]=node.compositeSensor.read()['Temperature']
         node.memory[self.maxKey]=node.memory[self.temperatureKey]   
-        #return node.memory[self.maxKey] is not None    
     
     def prepare_message(self,node):
         return node.memory[self.maxKey]
                    
     def process_message(self,node,message):
-        #print message.data
         if message.data>node.memory[self.maxKey]:
             node.memory[self.maxKey] = message.data
     
     def resolve(self,node):
         print "TU SAM"
-        destination_nodes = node.memory[self.treeKey]
-        #print destination_nodes
-        #print node.memory[self.parentKey]
+        destination_nodes = node.memory[self.neighborsKey]
         destination_nodes.remove(node.memory[self.parentKey][0]) #garantira topologiju        
         
         node.send(Message(header='Notification', data=node.memory[self.maxKey], destination=destination_nodes))        
@@ -74,10 +70,4 @@ class MaxFind(Saturation):
               'PROCESSING':processing, #redefinirali smo processing
               #'SATURATED':Saturation.STATUS.get('SATURATED'),
               'SATURATED':resolve,
-        
-        #svaka metoda vezana uz status mora imati self,node,message
-        #procedure primaju self po defaultu kao prvi argument, 
-        #ako je procedura definirana kao def procedura(self,node) 
-        #krivo je zvati self.procedura(self,node), 
-        #ispravno je     self.procedura(node)
-             }    
+    }

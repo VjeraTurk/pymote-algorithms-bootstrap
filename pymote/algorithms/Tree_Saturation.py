@@ -21,7 +21,7 @@ some_node.memory['I'] = 'Activate'
 # some_node_2.memory['I'] = 'Activate'
 
 
-write_pickle(net,'mreza.tar.gz')
+#write_pickle(net,'mreza.tar.gz')
 
 sim = Simulation(net)
 sim.run()
