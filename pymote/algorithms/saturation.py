@@ -6,7 +6,7 @@ class Saturation(NodeAlgorithm):
     
     #required_params = ('informationKey', 'treeKey',) # must have ','
     required_params = ('informationKey',) # must have ','
-    default_params = {'treeNeighbors': 'Neighbors','parentKey' : 'Parent', 'treeKey': 'Tree'}
+    default_params = {'neighborsKey': 'Neighbors', 'treeNeighbors': 'Neighbors','parentKey' : 'Parent', 'treeKey': 'Tree'}
 
     #TODO: treeKey now serves as treeNeighbors, and treeNeighbors as treeKey - necessary to SWAP them
     #      should treeKey be in required_params?!
@@ -14,6 +14,7 @@ class Saturation(NodeAlgorithm):
     def initializer(self):
         ini_nodes = []
         for node in self.network.nodes():
+            node.memory[self.neighborsKey] = node.compositeSensor.read()['Neighbors']
             node.memory[self.treeNeighbors] = node.compositeSensor.read()['Neighbors']
             node.memory[self.treeKey]= list(node.memory[self.treeNeighbors])
             self.initialize(node)
@@ -76,7 +77,7 @@ class Saturation(NodeAlgorithm):
         if message.header=="M":           
             self.process_message(node,message)
             #self.resolve(node)
-            node.staus='SATURATED'
+            node.status='SATURATED'
         #if message.header=="Notification":
             #print "Nebi smio biti tu"
             
