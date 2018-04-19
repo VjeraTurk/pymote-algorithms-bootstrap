@@ -1,0 +1,9 @@
+1. demo.py u sypderu pokrene program jednom a drugi puta baca error 
+
+  File "c:\users\admin\documents\winpython\winpython-32bit-2.7.10.3\python-2.7.10\src\pymote\pymote\algorithm.py", line 18, in __new__
+    base_rps = dict(getmembers(base)).get('required_params', [])
+
+TypeError: Error when calling the metaclass bases
+    'NoneType' object is not callable	
+	
+2. Gašenje figure koja nastaje s net.show() javlja Dead Kernel
