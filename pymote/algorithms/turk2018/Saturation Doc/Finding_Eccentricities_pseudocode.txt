@@ -1,0 +1,33 @@
+Procedure Initialize
+begin
+    Distance[x]:= 0;
+end
+
+Procedure Prepare Message
+begin
+    maxdist:= 1+ Max{Distance[*]};
+    M:=("Saturation", maxdist);
+end
+
+Procedure Resolve
+begin
+    Process Message;
+    Calculate Eccentricity;
+    forall y ∈ N(x) − {parent} do
+        maxdist:= 1 + Max{Distance[z]: z ∈ N(x) − {parent, y}};
+        send("Resolution", maxdist) to y;
+    endfor
+
+    become DONE;
+end
+
+Procedure Process Message
+
+begin
+    Distance[sender]:= Received distance;
+end
+
+Procedure Calculate Eccentricity
+begin
+    r(x):= Max{Distance[z]: z ∈ N(x)};
+end
