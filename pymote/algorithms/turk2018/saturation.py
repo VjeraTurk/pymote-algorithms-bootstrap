@@ -7,7 +7,6 @@ class Saturation(NodeAlgorithm):
     required_params = ()
     default_params = {'neighborsKey': 'Neighbors', 'treeKey': 'TreeNeighbors', 'parentKey' : 'Parent'}
 
-#DONE: treeKey now serves as treeNeighbors, and treeNeighbors as treeKey - necessary to SWAP them
     def initializer(self):
         ini_nodes = []
         for node in self.network.nodes():
@@ -38,20 +37,20 @@ class Saturation(NodeAlgorithm):
             destination_nodes.remove(message.source)
             node.send(Message(header='Activate', data='Activate', destination=destination_nodes))
             if len(node.memory[self.treeKey])==1 :
-                node.memory[self.parentKey] = list(node.memory[self.treeKey])[0]               
+                node.memory[self.parentKey] = list(node.memory[self.treeKey])[0]
                 updated_data=self.prepare_message(node)
                 node.send(Message(header='M', data=updated_data, destination=node.memory[self.parentKey]))
                 node.status = 'PROCESSING'
             else:
-                node.status='ACTIVE' 
+                node.status='ACTIVE'
     
-    def active(self, node, message):  
+    def active(self, node, message):
         
         if message.header=='M':
             self.process_message(node,message)
-            node.memory[self.treeKey].remove(message.source) #cijepa            
+            node.memory[self.treeKey].remove(message.source) #cijepa
             if len(node.memory[self.treeKey])==1 :
-                node.memory[self.parentKey] = list(node.memory[self.treeKey])[0]                
+                node.memory[self.parentKey] = list(node.memory[self.treeKey])[0]
                 updated_data=self.prepare_message(node)
                 node.send(Message(header='M', data=updated_data, destination=node.memory[self.parentKey]))
                 node.status = 'PROCESSING'
@@ -60,6 +59,8 @@ class Saturation(NodeAlgorithm):
         if message.header=="M":           
             self.process_message(node,message)
             self.resolve(node, message)
+            #processing prima self,
+            #pozvati ce se process_message i resolve primljene klase (self)
 
     def saturated(self, node):
         pass
@@ -74,8 +75,8 @@ class Saturation(NodeAlgorithm):
         pass
                 
     def resolve(self, node, message):
-        node.staus='SATURATED'
-        #pass
+        node.status='SATURATED'
+        #pass #nuzno?
         
     STATUS = {
               'AVAILABLE': available,
