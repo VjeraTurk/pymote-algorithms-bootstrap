@@ -1,6 +1,12 @@
 from pymote.algorithms.niculescu2003.floodingupdate import FloodingUpdate
-#from pymote.algorithms.floodingupdate import FloodingUpdate
-from pymote.sensor import TempSensor
+from pymote.sensor import Sensor
+from pymote.algorithms.turk2018.floodingupdate import FloodingUpdate
+import random
+
+class TempSensor(Sensor):
+
+    def read(self,node):
+        return {'Temperature': random.randrange(-15,40,1)}
 
 class MaxFind(FloodingUpdate):
     #required_params = ('dataKey',) 
