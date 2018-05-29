@@ -17,6 +17,7 @@ net.adj = graph_tree.adj
 
 net.algorithms = (Eccentricities, )
 
+
 # = net.nodes()[0]# uzimamo prvi cvor u listi cvorova mreze
 #some_node.memory['I'] = 'Activate'
 
