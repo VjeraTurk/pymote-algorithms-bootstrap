@@ -9,18 +9,23 @@ class MegaMerger(NodeAlgorithm):
     required_params = ()
     default_params = {'neighborsKey': 'Neighbors', 'inBranchKey': 'InBranch', 'parentKey' : 'Parent', 'weightKey': 'Weight',
                        'linkStatusKey':'LinkStatus','levelKey': 'Level', 'nameKey': 'Name', 
-                      'testEdgeKey':'TestEdge','findCountKey':'FindCount', 'debugKey': 'DEBUG','bestWtKey':'BestWeight'}
+                      'testEdgeKey':'TestEdge','findCountKey':'FindCount', 'debugKey': 'DEBUG','bestWtKey':'BestWeight','bestEdgeKey':'BestEdge'}
                       
     def initializer(self):
         ini_nodes = []
         
+
         for node in self.network.nodes():
             node.memory[self.neighborsKey] = node.compositeSensor.read()['Neighbors']                        
             self.initialize(node)
             node.status = 'SLEEPING'
+
             if random()<0.3:                #random initializers
                 ini_nodes.append(node)
+
+
         #ini_nodes.append(self.network.nodes()[5])
+        print("Inicijatori", ini_nodes)        
         
         for ini_node in ini_nodes:
             self.network.outbox.insert(0, Message(header=NodeAlgorithm.INI,destination=ini_node))  # to je spontani impuls
@@ -121,8 +126,7 @@ class MegaMerger(NodeAlgorithm):
 #            if node.memory[self.linkStatusKey][j] == 'UNUSED':  
 #                node.memory[self.linkStatusKey][j]='EXTERNAL'
 #            self.test(node)
-
-        
+  
     def find(self,node,message):
 
         ###100%
@@ -252,8 +256,9 @@ class MegaMerger(NodeAlgorithm):
             node.memory[self.nameKey]=j.memory[self.nameKey]
             node.memory[self.inBranchKey]=j
             
-#            node.memory[self.bestEdgeKey]=None
+            node.memory[self.bestEdgeKey]=None
             node.memory[self.bestWtKey]=[sys.maxint,sys.maxint]
+            
 
             destination_nodes=list()            
             for i in  node.memory[self.linkStatusKey]:
@@ -339,7 +344,8 @@ class MegaMerger(NodeAlgorithm):
         node.memory[self.weightKey] = {}
 
         node.memory[self.bestWtKey]=[sys.maxint,sys.maxint]
-        node.memory[self.testEdgeKey]=None        
+        node.memory[self.testEdgeKey]=None   
+        node.memory[self.bestEdgeKey]=None   
         
         for neighbor in node.memory[self.neighborsKey]:
             node.memory[self.weightKey][neighbor] = [min(node.id, neighbor.id),max(node.id, neighbor.id)]
