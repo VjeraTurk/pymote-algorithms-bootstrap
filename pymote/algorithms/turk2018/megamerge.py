@@ -119,7 +119,7 @@ class MegaMerger(NodeAlgorithm):
 #        if message.header=="Reject":
 #            j=message.source
 #            if node.memory[self.linkStatusKey][j] == 'UNUSED':  
-#                node.memory[self.linkStatusKey][j]="Rejected"
+#                node.memory[self.linkStatusKey][j]='EXTERNAL'
 #            self.test(node)
 
         
@@ -207,7 +207,7 @@ class MegaMerger(NodeAlgorithm):
         if message.header=="Reject":
             j=message.source
             if node.memory[self.linkStatusKey][j] == 'UNUSED':   
-                node.memory[self.linkStatusKey][j]="Rejected"
+                node.memory[self.linkStatusKey][j]='EXTERNAL'
             self.test(node)
         
         if message.header=="Test":
@@ -323,7 +323,7 @@ class MegaMerger(NodeAlgorithm):
         if message.header=="Reject":
             j=message.source
             if node.memory[self.linkStatusKey][j] == 'UNUSED': ## Basic == Unused?  
-                node.memory[self.linkStatusKey][j]="Rejected"
+                node.memory[self.linkStatusKey][j]='EXTERNAL'
             self.test(node)
 
  
