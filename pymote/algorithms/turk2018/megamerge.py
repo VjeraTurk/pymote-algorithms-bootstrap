@@ -190,6 +190,8 @@ class MegaMerger(NodeAlgorithm):
             j=message.source
             node.memory[self.testEdgeKey]=None
 
+            print("compare",node.memory[self.weightKey][j],node.memory[self.bestWtKey])
+            
             m=self.min_weight_two_lists(node.memory[self.weightKey][j],node.memory[self.bestWtKey])            
 
             if m==node.memory[self.bestWtKey]:
@@ -392,7 +394,7 @@ class MegaMerger(NodeAlgorithm):
         return orderedDict.keys()[0]       
     
         
-    def min_weight_two_lists(a,b):  
+    def min_weight_two_lists(self,a,b):  
         if a[0]<b[0]:
             return a
         elif a[0]>b[0]:   
