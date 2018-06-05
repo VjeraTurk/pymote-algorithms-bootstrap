@@ -1,3 +1,6 @@
+#%load_ext autoreload
+#%autoreload 2
+#%reload_ext autoreload
 from pymote import NetworkGenerator
 from pymote.npickle import write_pickle, read_pickle
 from pymote.simulation import Simulation
