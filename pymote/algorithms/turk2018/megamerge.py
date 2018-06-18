@@ -41,9 +41,10 @@ EXTERNAL
 
 class MegaMerger(NodeAlgorithm):
     required_params = ()
-    default_params = {'neighborsKey': 'Neighbors', 'inBranchKey': 'InBranch', 'weightKey': 'Weight',
-                       'linkStatusKey':'LinkStatus','levelKey': 'Level', 'nameKey': 'Name', 
-                      'testEdgeKey':'TestEdge','findCountKey':'FindCount', 'debugKey': 'DEBUG','bestWtKey':'BestWeight','bestEdgeKey':'BestEdge'}
+    default_params = {'neighborsKey': 'Neighbors', 'weightKey': 'Weight', 'linkStatusKey':'LinkStatus', 
+                       'levelKey': 'Level', 'nameKey': 'Name', 'inBranchKey': 'InBranch', 
+                      'testEdgeKey':'TestEdge','findCountKey':'FindCount', 'bestWtKey':'BestWeight','bestEdgeKey':'BestEdge',
+                      'queueKey':'Queue', 'haltKey':'Halt','debugKey': 'DEBUG'}
 
     def initializer(self):
         ini_nodes = []
@@ -77,7 +78,9 @@ class MegaMerger(NodeAlgorithm):
                  #node.send(Message(header="Initiate", data=node.memory[self.weightKey][j], destination=j))                   
                  node.send(Message(header="Initiate", data=0, destination=j))                   
             elif node.memory[self.linkStatusKey][j]=='BASIC':
-                self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
+                #then place received message on end of queue
+                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
+                node.memory[self.queueKey].append(message)
             else:
                 #send Initiate(LN + 1, w(j), Find) on edge j
                 node.memory[self.levelKey]=node.memory[self.levelKey]+1
@@ -89,7 +92,9 @@ class MegaMerger(NodeAlgorithm):
             j=message.source
             if j.memory[self.levelKey]>node.memory[self.levelKey]:
                 #then place received message on end of queue
-                self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
+                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
+                node.memory[self.queueKey].append(message)
+                
             elif j.memory[self.nameKey] != node.memory[self.nameKey]:
                 node.send(Message(header="Accept", data=0, destination=j))
             else:
@@ -119,7 +124,9 @@ class MegaMerger(NodeAlgorithm):
                  node.send(Message(header="Initiate", data=0, destination=j))
                  node.memory[self.findCountKey]=node.memory[self.findCountKey]+1
             elif node.memory[self.linkStatusKey][j]=='BASIC':
-				self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source)) #then place received message on end of queue
+				#then place received message on end of queue
+                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
+                node.memory[self.queueKey].append(message)
             else:
                 #send Initiate(LN + 1, w(j), Find) on edge j
                 node.memory[self.levelKey]=node.memory[self.levelKey]+1
@@ -149,7 +156,8 @@ class MegaMerger(NodeAlgorithm):
             j=message.source
             if j.memory[self.levelKey]>node.memory[self.levelKey]:
                 #then place received message on end of queue
-                self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source)) 
+                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source)) 
+                node.memory[self.queueKey].append(message)
             elif j.memory[self.nameKey] != node.memory[self.nameKey]:
                 node.send(Message(header="Accept", data=0, destination=j))
             else:
@@ -165,10 +173,13 @@ class MegaMerger(NodeAlgorithm):
             node.memory[self.testEdgeKey]=None
             print("compare",node.memory[self.weightKey][j],node.memory[self.bestWtKey])            
             m=self.min_weight_two_lists(node.memory[self.weightKey][j],node.memory[self.bestWtKey])            
-
+            print("smaller", m )
+            print("m==node.memory[self.bestWtKey]", m==node.memory[self.bestWtKey])
+            
             if m!=None and m==node.memory[self.bestWtKey]: ## !=m
                 node.memory[self.bestEdgeKey]=j
-                node.memory[self.bestWtKey]=node.memory[self.weightKey][j]       
+                node.memory[self.bestWtKey]=node.memory[self.weightKey][j]
+                
             self.report(node) 
 
         if message.header=="Reject":
@@ -182,27 +193,33 @@ class MegaMerger(NodeAlgorithm):
             j=message.source
             w=message.data
             print("message.data ",w,"node bestWt ",node.memory[self.bestWtKey])
-            m=self.min_weight_two_lists(w,node.memory[self.bestWtKey])
+
+            print("compare",node.memory[self.weightKey][j],node.memory[self.bestWtKey])            
+            m=self.min_weight_two_lists(node.memory[self.weightKey][j],node.memory[self.bestWtKey])            
+            print("smaller", m )
             
             if j!=node.memory[self.inBranchKey]:
                 node.memory[self.findCountKey]=node.memory[self.findCountKey]-1
                 print(m,w)
-                print(m==w)
+                print("m==w",m==w)
                 #if m==w : ##compare lista pitanje dal radi, što ako je m!=[sys.maxint,sys.maxint]?!
                 if m!=None and m==w and m!=[sys.maxint,sys.maxint]:
                     node.memory[self.bestWtKey]=w
                     node.memory[self.bestEdgeKey]=j
+                    node.memory[self.debugKey]="m!=[sys.maxint,sys.maxint]"
                 self.report(node)
             elif node.status=='FIND':
-                self.network.outbox.insert(0, Message(header=message.header,data=w,destination=node, source=message.source))                 
-                #beskonacno
-                pass
+                #then place received message on end of queue
+                #self.network.outbox.insert(0, Message(header=message.header,data=w,destination=node, source=message.source))                 
+                node.memory[self.queueKey].append(message)
+                #pass
             elif m==node.memory[self.bestWtKey]:
                 self.change_root(node)
             elif w==node.memory[self.bestWtKey]:
                 print("HALT")
-                w=node.memory[self.bestWtKey]=[sys.maxint,sys.maxint]
-                node.memory[self.debugKey]='HALT'
+                if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint]:
+                    node.memory[self.debugKey]='HALT'
+                    node.memory[self.haltKey]=True
 
         if message.header=="Change Root":
             self.change_root(node)
@@ -217,7 +234,9 @@ class MegaMerger(NodeAlgorithm):
                  #Ime neka nije od prvog koji pošalje Initiate nego svaki za sebe izračuna
                  node.send(Message(header="Initiate", data=0, destination=j))
             elif node.memory[self.linkStatusKey][j]=='BASIC':
-				self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))#then place received message on end of queue
+				#then place received message on end of queue
+                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
+                node.memory[self.queueKey].append(message)
             else:
                 #send Initiate(LN + 1, w(j), Find) on edge j
                 node.memory[self.levelKey]=node.memory[self.levelKey]+1
@@ -249,7 +268,8 @@ class MegaMerger(NodeAlgorithm):
             j=message.source
             if j.memory[self.levelKey]>node.memory[self.levelKey]:
                 #then place received message on end of queue
-                self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source)) 
+                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source)) 
+                node.memory[self.queueKey].append(message)
             elif j.memory[self.nameKey] != node.memory[self.nameKey]:
                 node.send(Message(header="Accept", data=0, destination=j))
             else:
@@ -264,26 +284,30 @@ class MegaMerger(NodeAlgorithm):
             j=message.source
             w=message.data
             print("message.data ",w,"node bestWt ",node.memory[self.bestWtKey])
-            m=self.min_weight_two_lists(w,node.memory[self.bestWtKey])
-            
+            print("compare",node.memory[self.weightKey][j],node.memory[self.bestWtKey])            
+            m=self.min_weight_two_lists(node.memory[self.weightKey][j],node.memory[self.bestWtKey])            
+            print("smaller", m )
             if j!=node.memory[self.inBranchKey]:
                 node.memory[self.findCountKey]=node.memory[self.findCountKey]-1
                 print(m,w)
-                print(m==w)
+                print("m==w",m==w)
                 #if m==w : ##compare lista pitanje dal radi, što ako je m!=[sys.maxint,sys.maxint]?!
                 if m!=None and m==w and m!=[sys.maxint,sys.maxint]:
                     node.memory[self.bestWtKey]=w
                     node.memory[self.bestEdgeKey]=j
                 self.report(node)
             elif node.status=='FIND':
+                #then place received message on end of queue
                 self.network.outbox.insert(0, Message(header=message.header,data=w,destination=node, source=message.source))                 
+                node.memory[self.queueKey].append(message)
                 #pass
             elif m==node.memory[self.bestWtKey]:
                 self.change_root(node)
             elif w==node.memory[self.bestWtKey]:
                 print("HALT")
-                w=node.memory[self.bestWtKey]=[sys.maxint,sys.maxint]
-                node.memory[self.debugKey]='HALT'
+                if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint]:
+                    node.memory[self.debugKey]='HALT'
+                    node.memory[self.haltKey]=True
         
         if message.header=="Change Root":
             self.change_root(node)
@@ -308,8 +332,11 @@ class MegaMerger(NodeAlgorithm):
         
         for neighbor in node.memory[self.neighborsKey]:
             node.memory[self.weightKey][neighbor] = [min(node.id, neighbor.id),max(node.id, neighbor.id)]
-            node.memory[self.linkStatusKey][neighbor] = 'BASIC' 
-                
+            node.memory[self.linkStatusKey][neighbor] = 'BASIC'
+            
+        node.memory[self.queueKey]=list()
+        node.memory[self.haltKey]=False
+    
     ###(2)   
     def wake_up(self,node):       
         m = self.min_weight_in_dict(node.memory[self.weightKey])
@@ -325,10 +352,13 @@ class MegaMerger(NodeAlgorithm):
         
         for key in node.memory[self.linkStatusKey]:
             if node.memory[self.linkStatusKey][key]=='BASIC':              
-                test_nodes[key]=node.memory[self.linkStatusKey][key]
+                #test_nodes[key]=node.memory[self.linkStatusKey][key]
+                test_nodes[key]=node.memory[self.weightKey][key]
+                
 
-        print("test", len(test_nodes))
-
+        print("len(test_nodes)", len(test_nodes))
+        print ("test_nodes",test_nodes)        
+        
         if len(test_nodes)!=0:
             test_node=self.min_weight_in_dict(test_nodes)
             node.memory[self.testEdgeKey]=test_node
@@ -352,6 +382,7 @@ class MegaMerger(NodeAlgorithm):
             node.memory[self.linkStatusKey][node.memory[self.bestEdgeKey]]='BRANCH'
 
     def min_weight_in_dict(self,d):
+        
         orderedDict = collections.OrderedDict(sorted(d.iteritems(), key=lambda (k,v):v[0]))            
         min_1= orderedDict.values()[0][0]        
         uzi_izbor={}              
@@ -359,8 +390,11 @@ class MegaMerger(NodeAlgorithm):
             if orderedDict[o][0] == min_1:
                 uzi_izbor.update({o:orderedDict[o]})    
         orderedDict = collections.OrderedDict(sorted(uzi_izbor.iteritems(), key=lambda (k,v):v[1]))       
-
+        
+        print ("ordered values uzi izbor!!:")
         print orderedDict.values()
+        print ("minimum value:")
+        print orderedDict.keys()[0]
         
         return orderedDict.keys()[0]       
     
