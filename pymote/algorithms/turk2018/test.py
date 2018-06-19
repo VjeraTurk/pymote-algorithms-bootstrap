@@ -6,7 +6,7 @@ from pymote.npickle import write_pickle, read_pickle
 from pymote.simulation import Simulation
 from networkx import minimum_spanning_tree
 
-net_gen = NetworkGenerator(7)
+net_gen = NetworkGenerator(3)
 net = net_gen.generate_random_network()
 #graph_tree = minimum_spanning_tree(net)
 #net.adj = graph_tree.adj

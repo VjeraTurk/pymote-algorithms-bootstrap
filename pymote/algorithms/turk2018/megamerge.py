@@ -5,6 +5,7 @@ from random import random
 import collections
 import sys
 
+
 """
 link status
 
@@ -63,7 +64,6 @@ class MegaMerger(NodeAlgorithm):
             
         
     def sleeping(self, node, message):
-
         if message.header == NodeAlgorithm.INI: #Spontaneously
             self.wake_up(node) 
         
@@ -72,34 +72,43 @@ class MegaMerger(NodeAlgorithm):
             j=message.source
             self.wake_up(node)
             
-            if j.memory[self.levelKey]<node.memory[self.levelKey]:
-                 node.memory[self.linkStatusKey][j]='BRANCH'
-                 #send Initiate(LN, FN, SN) on edge j; ja mislim da je to sve sadržano u message.source
-                 #node.send(Message(header="Initiate", data=node.memory[self.weightKey][j], destination=j))                   
-                 node.send(Message(header="Initiate", data=0, destination=j))                   
-            elif node.memory[self.linkStatusKey][j]=='BASIC':
+#            if j.memory[self.levelKey]<node.memory[self.levelKey]: #u sleepingu ovo nikad nece biti slučaj?
+#                 print("NIKADA TU!")
+#                 node.memory[self.linkStatusKey][j]='BRANCH'
+#                 #send Initiate(LN, FN, SN) on edge j; ja mislim da je to sve sadržano u message.source
+#                 #node.send(Message(header="Initiate", data=node.memory[self.weightKey][j], destination=j))                   
+#                 node.send(Message(header="Initiate", data=0, destination=j))                 
+                   
+            if node.memory[self.linkStatusKey][j]=='BASIC':
                 #then place received message on end of queue
-                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
                 node.memory[self.queueKey].append(message)
             else:
                 #send Initiate(LN + 1, w(j), Find) on edge j
                 node.memory[self.levelKey]=node.memory[self.levelKey]+1
                 node.status='FIND' 
                 node.send(Message(header="Initiate", data=node.memory[self.weightKey][j], destination=j))
+                #Frendly merge
+                                
         ###100%
         if message.header=="Test":
             self.wake_up(node)# posljedica node.status='FOUND'
             j=message.source
-            if j.memory[self.levelKey]>node.memory[self.levelKey]:
-                #then place received message on end of queue
-                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
-                node.memory[self.queueKey].append(message)
-                
-            elif j.memory[self.nameKey] != node.memory[self.nameKey]:
+            #when a node recieves sush a test message, it checks weather or not its own fragment identity agrees with that of the test message...
+
+#            if j.memory[self.levelKey]>node.memory[self.levelKey]:
+#                 print("NIKADA TU!")
+#                #then place received message on end of queue
+#                #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
+#                node.memory[self.queueKey].append(message)                
+            
+            if j.memory[self.nameKey] != node.memory[self.nameKey]:
                 node.send(Message(header="Accept", data=0, destination=j))
+                #when a node a sends an Accept message in response to B's Test message, then the fragment identity of A differs and will continue to differ, from B's current fragment identity
+
             else:
                 if node.memory[self.linkStatusKey][j]=='BASIC':
                    node.memory[self.linkStatusKey][j]='REJECTED'
+                   #...if the identites agree, then the node sends the message Reject back to the sender, and both nodes put the edge in the Rejected stage
                    if node.memory[self.testEdgeKey]!=j or node.memory[self.testEdgeKey]==None:
                        node.send(Message(header="Reject", data=0, destination=j))
                    else:
@@ -117,14 +126,21 @@ class MegaMerger(NodeAlgorithm):
         ###100%
         if message.header=="Connect":
             j=message.source
+            
             if j.memory[self.levelKey] < node.memory[self.levelKey]:
                  node.memory[self.linkStatusKey][j]='BRANCH'
                  #send Initiate(LN, FN, SN) on edge j; ja mislim da je to sve sadržano u message.source
                  #Ime neka nije od prvog koji pošalje Initiate nego svaki za sebe izračuna
-                 node.send(Message(header="Initiate", data=0, destination=j))
+                 node.send(Message(header="Initiate", data=0, destination=j)) # FN find
                  node.memory[self.findCountKey]=node.memory[self.findCountKey]+1
+                 #Due to our strategy of never making a low level fragment wait, node n' (reciever) immediatly 
+                 #sends an Initiate message with identity and level parameteters of F' and L' to n
+                 
+                 #If node n' has not yet sent its report message at the given level, 
+                 #fragment F simpley joins fragment F' and participates in finding the minimum-weight outgoing edge from the enlarged fragment...
+            
             elif node.memory[self.linkStatusKey][j]=='BASIC':
-				#then place received message on end of queue
+			 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
                 node.memory[self.queueKey].append(message)
             else:
@@ -132,17 +148,19 @@ class MegaMerger(NodeAlgorithm):
                 node.memory[self.levelKey]=node.memory[self.levelKey]+1
                 node.status='FIND' ##ne znam dal seta sebi status ili samo nodu kojem salje
                 node.send(Message(header="Initiate", data=node.memory[self.weightKey][j], destination=j))
-
+                #frendly merge
+                
         if message.header=="Initiate":
             j=message.source
             node.memory[self.levelKey]=j.memory[self.levelKey]
             node.memory[self.nameKey]=j.memory[self.nameKey]
-            node.status=j.status #ili FIND ili FOUND
+            print(node.id, "iz",node.status,"u",j.status)
+            node.status=j.status
             node.memory[self.inBranchKey]=j
             node.memory[self.bestEdgeKey]=None
             node.memory[self.bestWtKey]=[sys.maxint,sys.maxint]
             destination_nodes=list()
-            
+   
             for i in  node.memory[self.linkStatusKey]:
                 if i!=j and node.memory[self.linkStatusKey][i]=='BRANCH':
                     destination_nodes.append(i)
@@ -150,6 +168,7 @@ class MegaMerger(NodeAlgorithm):
                         node.memory[self.findCountKey]=node.memory[self.findCountKey]+1
             node.send(Message(header="Initiate", data=0, destination=destination_nodes))
             if node.status=='FIND':
+                # When a node recieves this initiate message it starts to find its minimum-weight outgoing edge                
                 self.test(node)
 
         if message.header=="Test":
@@ -160,12 +179,13 @@ class MegaMerger(NodeAlgorithm):
                 node.memory[self.queueKey].append(message)
             elif j.memory[self.nameKey] != node.memory[self.nameKey]:
                 node.send(Message(header="Accept", data=0, destination=j))
+                #when a node a sends an Accept message in response to B's Test message, then the fragment identity of A differs and will continue to differ, from B's current fragment identity
             else:
                 if node.memory[self.linkStatusKey][j]=='BASIC':
                    node.memory[self.linkStatusKey][j]='REJECTED'
                    if node.memory[self.testEdgeKey]!=j or node.memory[self.testEdgeKey]==None:
                        node.send(Message(header="Reject", data=0, destination=j))
-                   else:
+                   else:                    
                        self.test(node)
 
         if message.header=="Accept":
@@ -180,12 +200,13 @@ class MegaMerger(NodeAlgorithm):
                 node.memory[self.bestEdgeKey]=j
                 node.memory[self.bestWtKey]=node.memory[self.weightKey][j]
                 
+                
             self.report(node) 
 
         if message.header=="Reject":
             j=message.source
             if node.memory[self.linkStatusKey][j] == 'BASIC':   
-                node.memory[self.linkStatusKey][j] = 'REJECTED'
+                node.memory[self.linkStatusKey][j] = 'REJECTED' #..both nodes put the edge state in the Rejected state
             self.test(node) #Test next
 
         ###100% in Find
@@ -203,11 +224,12 @@ class MegaMerger(NodeAlgorithm):
                 print(m,w)
                 print("m==w",m==w)
                 #if m==w : ##compare lista pitanje dal radi, što ako je m!=[sys.maxint,sys.maxint]?!
-                if m!=None and m==w and m!=[sys.maxint,sys.maxint]:
+#                if m!=None and m==w and m!=[sys.maxint,sys.maxint]:                
+                if m!=None and m==w:                
                     node.memory[self.bestWtKey]=w
                     node.memory[self.bestEdgeKey]=j
-                    node.memory[self.debugKey]="m!=[sys.maxint,sys.maxint]"
                 self.report(node)
+                                
             elif node.status=='FIND':
                 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=w,destination=node, source=message.source))                 
@@ -215,7 +237,9 @@ class MegaMerger(NodeAlgorithm):
                 #pass
             elif m==node.memory[self.bestWtKey]:
                 self.change_root(node)
+                print("NIKADA TU?")
             elif w==node.memory[self.bestWtKey]:
+                print("NIKADA TU?")
                 print("HALT")
                 if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint]:
                     node.memory[self.debugKey]='HALT'
@@ -232,9 +256,14 @@ class MegaMerger(NodeAlgorithm):
                  node.memory[self.linkStatusKey][j]='BRANCH'
                  #send Initiate(LN, FN, SN) on edge j; ja mislim da je to sve sadržano u message.source
                  #Ime neka nije od prvog koji pošalje Initiate nego svaki za sebe izračuna
-                 node.send(Message(header="Initiate", data=0, destination=j))
+                 node.send(Message(header="Initiate", data=0, destination=j)) #FN found
+                 #...if on the other hand node n' (receiver) has allready sent its report message, 
+                 #then we can deduce that outgoing edge from node n' (receiver) 
+                 #has a lower weight than minimum-weight outgoing edge from F (sender of Connect)
+                 #this eliminates the necessity for F to join the search for the minimum-weight outgoing edge
+                 
             elif node.memory[self.linkStatusKey][j]=='BASIC':
-				#then place received message on end of queue
+			 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
                 node.memory[self.queueKey].append(message)
             else:
@@ -242,13 +271,15 @@ class MegaMerger(NodeAlgorithm):
                 node.memory[self.levelKey]=node.memory[self.levelKey]+1
                 node.status='FIND'
                 node.send(Message(header="Initiate", data=node.memory[self.weightKey][j], destination=j))
-
+                #frendly merge
+                
         if message.header=="Initiate":
             j=message.source
             node.memory[self.levelKey]=j.memory[self.levelKey]
             node.memory[self.nameKey]=j.memory[self.nameKey]
             node.status=j.status #ili FIND ili FOUND
-            print(node.id, "iz","FIND","u",j.status)
+            
+            print(node.id, "iz",node.status,"u",j.status)
             node.memory[self.inBranchKey]=j
             node.memory[self.bestEdgeKey]=None
             node.memory[self.bestWtKey]=[sys.maxint,sys.maxint]
@@ -264,14 +295,21 @@ class MegaMerger(NodeAlgorithm):
                 self.test(node)
 #The nodes in fragment F go into state Find or Found depending on this parameter 
 #of the initiate message, and they send Test messages only in the Find state.
+        
         if message.header=="Test":
             j=message.source
-            if j.memory[self.levelKey]>node.memory[self.levelKey]:
+            if j.memory[self.levelKey]>node.memory[self.levelKey]:                
                 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source)) 
                 node.memory[self.queueKey].append(message)
-            elif j.memory[self.nameKey] != node.memory[self.nameKey]:
+                #..if the recieving node's fragment level is less than that of the test message
+                #then the recieving node delays any response until its own level increasses sufficiently
+            elif j.memory[self.nameKey] != node.memory[self.nameKey]: 
+                # if the node recieving node has a different identity from the test message 
+                # and if the recieving node's fragment level is greather than or equal to that of the test message
+                # then the Accept message is sent back to the sending node
                 node.send(Message(header="Accept", data=0, destination=j))
+                #when a node a sends an Accept message in response to B's Test message, then the fragment identity of A differs and will continue to differ, from B's current fragment identity
             else:
                 if node.memory[self.linkStatusKey][j]=='BASIC':
                    node.memory[self.linkStatusKey][j]='REJECTED'
@@ -281,6 +319,8 @@ class MegaMerger(NodeAlgorithm):
                        self.test(node)
                        
         if message.header=="Report":
+            #Eventualy, the teo nodes adjacent to the core send Report on the core branch itself, 
+            #allowing each of these nodes to determine both the weight o the minimum outgoing edge and the side of the core on which this edge lies
             j=message.source
             w=message.data
             print("message.data ",w,"node bestWt ",node.memory[self.bestWtKey])
@@ -292,22 +332,26 @@ class MegaMerger(NodeAlgorithm):
                 print(m,w)
                 print("m==w",m==w)
                 #if m==w : ##compare lista pitanje dal radi, što ako je m!=[sys.maxint,sys.maxint]?!
-                if m!=None and m==w and m!=[sys.maxint,sys.maxint]:
+#                if m!=None and m==w and m!=[sys.maxint,sys.maxint]:
+                if m!=None and m==w:
                     node.memory[self.bestWtKey]=w
                     node.memory[self.bestEdgeKey]=j
                 self.report(node)
             elif node.status=='FIND':
                 #then place received message on end of queue
-                self.network.outbox.insert(0, Message(header=message.header,data=w,destination=node, source=message.source))                 
+                #self.network.outbox.insert(0, Message(header=message.header,data=w,destination=node, source=message.source))                 
+                print("NIKADA TU?")
                 node.memory[self.queueKey].append(message)
                 #pass
             elif m==node.memory[self.bestWtKey]:
                 self.change_root(node)
+                #After the two core nodes have exchanged Report message, the bestEdge saved by the fragment nodes makes it posible to trace the path from core to the node having minimum waight
             elif w==node.memory[self.bestWtKey]:
                 print("HALT")
                 if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint]:
                     node.memory[self.debugKey]='HALT'
                     node.memory[self.haltKey]=True
+        
         
         if message.header=="Change Root":
             self.change_root(node)
@@ -338,14 +382,21 @@ class MegaMerger(NodeAlgorithm):
         node.memory[self.haltKey]=False
     
     ###(2)   
-    def wake_up(self,node):       
+    def wake_up(self,node):
+        #when a sleeping node either spontaneously awakens or is awakened by the recipt of any algorithm message from another node, 
+        #the node first chooses it's minimum-weight adjcent edge...
         m = self.min_weight_in_dict(node.memory[self.weightKey])
+        #...marks this edge as branch...        
         node.memory[self.linkStatusKey][m]='BRANCH'
         
-        node.memory[self.levelKey]=0
-        node.status='FOUND'          
+        node.memory[self.levelKey]=0 #mozda u initialize()?
         node.memory[self.findCountKey]=0
+        
+        #...sends a message called Connect and goes into the state Found        
         node.send(Message(header="Connect", data=0, destination=m)) ##Connect==Let us Merge
+        node.status='FOUND'
+        
+        print(node.id, "min in wake_up", m)         
                      
     def test(self,node):
         test_nodes={}        
@@ -363,14 +414,26 @@ class MegaMerger(NodeAlgorithm):
             test_node=self.min_weight_in_dict(test_nodes)
             node.memory[self.testEdgeKey]=test_node
             node.send(Message(header="Test", data=0, destination=test_node))
+            print(node.id,"min in test", test_node) #edge prestaje biti basic, postaje rejected ili branch, tako se izbjegava da ponovno bude odabran
         else :
             node.memory[self.testEdgeKey]=None #danas
             self.report(node)
     
     def report(self,node):
         if node.memory[self.findCountKey]==0 and node.memory[self.testEdgeKey]==None:
-            node.status='FOUND'
+            #node.status='FOUND' #when a node sends a Report Message if also goes to the state FOUND
             node.send(Message(header="Report", data=node.memory[self.bestWtKey], destination=node.memory[self.inBranchKey]))
+            node.status='FOUND'
+            #valjda nije bitno prije ili poslije
+            
+            #In particular, each leaf node of the fragment, that is
+            #each node adjicent to only one fragment branch, 
+            # sends the Report(W) on its inbound branch
+            # W is the weight of the minimum-weight outgoing edge from the node and
+            # W is infinity if there are no outgoing edges
+            
+            #Similarly each interior node of the fragment waits until it has both found it's own minimum-weighted outgoing edge
+            # and received message on all outbound fragment branches
 
             
     def change_root(self,node):
@@ -380,6 +443,9 @@ class MegaMerger(NodeAlgorithm):
         else:
             node.send(Message(header="Connect", data=0, destination=node.memory[self.bestEdgeKey])) ##Connect==Let us Merge
             node.memory[self.linkStatusKey][node.memory[self.bestEdgeKey]]='BRANCH'
+            #when this message reaches the node with minimum-weight outgoing edge, the inbound edge form a rooted tree,rooted at this node
+            #Finally this node sends the message Connect(L) over the minimum-weighted outgoing edge
+            
 
     def min_weight_in_dict(self,d):
         
@@ -391,7 +457,7 @@ class MegaMerger(NodeAlgorithm):
                 uzi_izbor.update({o:orderedDict[o]})    
         orderedDict = collections.OrderedDict(sorted(uzi_izbor.iteritems(), key=lambda (k,v):v[1]))       
         
-        print ("ordered values uzi izbor!!:")
+        print ("uzi izbor:")
         print orderedDict.values()
         print ("minimum value:")
         print orderedDict.keys()[0]
