@@ -25,7 +25,7 @@ both nodes put the edge in the Rejected state. The node sending the test
 message then continues by testing its next-best edge.
 The exception above is that, if a node sends and then receives a test message 
 with the same identity on the same edge, it simply rejects the edge without the
-reject message; this reduces the communication complexity slightly. (INTERNAL?) 
+reject message; this reduces the communication complexity slihaltghtly.(INTERNAL?) 
 
 If the node receiving a test message has a different identity from that of the
 test message, and if the receiving node's fragment level is greater than or equal 
@@ -85,7 +85,8 @@ class MegaMerger(NodeAlgorithm):
             else:
                 #send Initiate(LN + 1, w(j), Find) on edge j
                 node.memory[self.levelKey]=node.memory[self.levelKey]+1
-                node.status='FIND' 
+                node.status='FIND'
+                
                 node.send(Message(header="Initiate", data=node.memory[self.weightKey][j], destination=j))
                 #Frendly merge
                                 
@@ -446,7 +447,13 @@ class MegaMerger(NodeAlgorithm):
             #when this message reaches the node with minimum-weight outgoing edge, the inbound edge form a rooted tree,rooted at this node
             #Finally this node sends the message Connect(L) over the minimum-weighted outgoing edge
             
-
+    def dequeue_and_process_message(self,node):
+        m=node.memory[self.queueKey].pop()
+        node.inbox        
+        print(m.header)
+        
+        
+        
     def min_weight_in_dict(self,d):
         
         orderedDict = collections.OrderedDict(sorted(d.iteritems(), key=lambda (k,v):v[0]))            
