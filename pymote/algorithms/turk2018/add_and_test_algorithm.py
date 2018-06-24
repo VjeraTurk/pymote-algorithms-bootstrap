@@ -8,7 +8,6 @@ Created on Sun Jun 24 17:21:20 2018
 #%load_ext autoreload
 #%autoreload 2
 #%reload_ext autoreload
-
 from pymote import NetworkGenerator
 from pymote.npickle import read_pickle, write_pickle
 from networkx import minimum_spanning_tree, prim_mst_edges, prim_mst, spring_layout
@@ -45,7 +44,7 @@ test_sum=test_net.size(weight='weight')
 print("MST Sum %f" % (test_sum))
 
 
-"""
+
 sim = Simulation(net)
 sim.run()
 
@@ -62,4 +61,3 @@ for node in net.nodes():
          #   print value
  
     print  "\n"
-"""

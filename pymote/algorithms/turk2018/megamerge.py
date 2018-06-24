@@ -53,8 +53,7 @@ class MegaMerger(NodeAlgorithm):
     def initializer(self):
         ini_nodes = []
 
-                
-       
+
         for node in self.network.nodes():
             node.memory[self.neighborsKey] = node.compositeSensor.read()['Neighbors']                        
 
@@ -63,23 +62,21 @@ class MegaMerger(NodeAlgorithm):
 #            if random()<0.3:                #random initializers
 #                ini_nodes.append(node)
 
-
+#OVO JE KLJUČNO
         net = self.network
         for node,neighbors in net.adjacency_iter():
             for neighbor,eattr in neighbors.items():
                 weight=eattr['weight']
+                node.memory[self.weightKey][neighbor][0]=weight
                 print('%.3f' % (weight))
 
 
         ini_nodes.append(self.network.nodes()[0])
 
-
-
         print("Inicijatori: ", ini_nodes)                
         for ini_node in ini_nodes:
             self.network.outbox.insert(0, Message(header=NodeAlgorithm.INI,destination=ini_node))  # to je spontani impuls
-        
-        print("ADJ",self.network.adj)            
+         
         
         
     def sleeping(self, node, message):
