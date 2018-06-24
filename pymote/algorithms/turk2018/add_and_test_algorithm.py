@@ -21,9 +21,15 @@ import random
 #from pymote.algorithms.turk2018.megamerge_p import MegaMerger
 from pymote.algorithms.turk2018.megamerge import MegaMerger
 
-#test_net = net = read_pickle('RandomBezAlg.tar.gz')
+test_net = net = read_pickle('RandomBezAlg.tar.gz')
 test_net = net = read_pickle('WorstCaseBezAlg.tar.gz')
 net.show()
+
+
+net.algorithms = (MegaMerger,)
+write_pickle(net, 'RandomSAlg.tar.gz')
+write_pickle(net, 'WorstCaseSAlg.tar.gz')
+##s ovom mrezom pokretati GUI simulator
 
 g = Graph()
 g.adj=net.adj
@@ -39,13 +45,9 @@ test_sum=test_net.size(weight='weight')
 print("MST Sum %f" % (test_sum))
 
 
-net.algorithms = (MegaMerger,)
-write_pickle(net, 'RandomSAlg.tar.gz')
-##s ovom mrezom pokrenuti simulator
 """
 sim = Simulation(net)
 sim.run()
-
 
 exclude = list()
 exclude.append('Neighbors')
@@ -61,6 +63,3 @@ for node in net.nodes():
  
     print  "\n"
 """
-
-
-

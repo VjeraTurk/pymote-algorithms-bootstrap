@@ -17,6 +17,7 @@ import random
 
 
 #Generate random weighted network
+"""
 net_gen = NetworkGenerator(10)
 net = net_gen.generate_random_network()
 
@@ -32,7 +33,7 @@ for node,neighbors in net.adjacency_iter():
         
 net.adj=g.adj
 write_pickle(net, 'RandomBezAlg.tar.gz')
-
+"""
 
 #### Primjer mreze sa sva tri slucaja-  Absorbtion, Friendly Merge i Suspenssion
 """
@@ -59,7 +60,7 @@ write_pickle(net, 'allCasesBezAlg.tar.gz')
 """
 
 ### Primjer mreze sa worst-case slučajem
-"""
+#"""
 net = Network()
 
 node= net.add_node(pos=[150,50])
@@ -83,7 +84,7 @@ g.add_edge(net.nodes()[3],net.nodes()[4],weight=4.414)
 net.adj=g.adj
 net.show()
 write_pickle(net, 'WorstCaseBezAlg.tar.gz')
-"""
+#"""
 
 #nacrtaj s težinama, 
 #pozicija nodova nije uredu?! Kako izvući poziciju?
