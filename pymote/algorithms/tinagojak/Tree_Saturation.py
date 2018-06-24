@@ -11,6 +11,8 @@ net = net_gen.generate_random_network()
 #net.show()
 graph_tree = minimum_spanning_tree(net)
 net.adj = graph_tree.adj
+
+
 #net.show()
 
 #net.algorithms = (Saturation, )

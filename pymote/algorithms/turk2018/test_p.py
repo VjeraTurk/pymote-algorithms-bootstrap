@@ -42,3 +42,35 @@ mst = minimum_spanning_tree(net)
 
 net.adj=mst.adj
 net.show()
+
+from pymote.network import Network
+net = Network()
+
+node= net.add_node(pos=[200,300])
+node= net.add_node(pos=[300,300])
+node= net.add_node(pos=[100,200])
+node= net.add_node(pos=[400,200])
+node= net.add_node(pos=[200,100])
+node= net.add_node(pos=[300,100])
+
+
+a = Graph()
+a.add_edge(net.nodes()[0],net.nodes()[1],weight=1.1)
+a.add_edge(net.nodes()[0],net.nodes()[2],weight=1.7)
+a.add_edge(net.nodes()[0],net.nodes()[4],weight=2.6)
+a.add_edge(net.nodes()[1],net.nodes()[3],weight=3.1)
+a.add_edge(net.nodes()[2],net.nodes()[4],weight=3.8)
+a.add_edge(net.nodes()[3],net.nodes()[5],weight=3.7)
+a.add_edge(net.nodes()[4],net.nodes()[5],weight=2.1)
+net.adj=a.adj
+net.show()
+
+mst = minimum_spanning_tree(net)
+net.adj=mst.adj
+net.show()
+
+write_pickle(net, 'all.tar.gz')
+
+
+
+

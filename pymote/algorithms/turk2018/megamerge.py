@@ -219,8 +219,7 @@ class MegaMerger(NodeAlgorithm):
             if m!=None and m==node.memory[self.bestWtKey]: ## !=m
                 node.memory[self.bestEdgeKey]=j
                 node.memory[self.bestWtKey]=node.memory[self.weightKey][j]
-                
-                
+                                
             self.report(node) 
 
         if message.header=="Reject":
