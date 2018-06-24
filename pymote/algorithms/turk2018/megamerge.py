@@ -4,8 +4,9 @@ from pymote.message import Message
 from random import random
 import collections
 import sys
-
-
+"""
+u terminated stanju radio bi isto sto i u find/found?!
+"""
 """
 link status
 
@@ -13,7 +14,6 @@ REJECTED  Rejected, if the edge is not a branch but has been discovered to join
 two nodes of the fragment
 BRANCH    Branch, if the edge is a branch in the current fragment
 BASIC     Basic if the edge is neither a branch nor rejected.
-
 
 Test message == Outside
 When a node receives such a test message, it checks whether or not its own 
@@ -25,15 +25,15 @@ both nodes put the edge in the Rejected state. The node sending the test
 message then continues by testing its next-best edge.
 The exception above is that, if a node sends and then receives a test message 
 with the same identity on the same edge, it simply rejects the edge without the
-reject message; this reduces the communication complexity slihaltghtly.(INTERNAL?) 
+reject message; this reduces the communication complexity slihaltghtly.
 
 If the node receiving a test message has a different identity from that of the
-test message, and if the receiving node's fragment level is greater than or equal 
-to that of the test message, then the message Accept is sent back to the sending
-node, certifying that the edge is an outgoing edge from the sending node's
-fragment. If, on the other hand, the receiving node's fragment level is less than
-that of the test message, then the receiving node delays making any response
-until its own level increases sufficiently. (EXTERNAL?)
+test message, and if the receiving node's fragment level is greater than or
+equal to that of the test message, then the message Accept is sent back to the
+sending node, certifying that the edge is an outgoing edge from the sending 
+node's fragment. If, on the other hand, the receiving node's fragment level is
+less than that of the test message, then the receiving node delays making any 
+response until its own level increases sufficiently. 
 
 UNUSED
 INTERNAL
@@ -42,26 +42,45 @@ EXTERNAL
 
 class MegaMerger(NodeAlgorithm):
     required_params = ()
-    default_params = {'neighborsKey': 'Neighbors', 'weightKey': 'Weight', 'linkStatusKey':'LinkStatus', 
-                       'levelKey': 'Level', 'nameKey': 'Name', 'inBranchKey': 'InBranch', 
-                      'testEdgeKey':'TestEdge','findCountKey':'FindCount', 'bestWtKey':'BestWeight','bestEdgeKey':'BestEdge',
-                      'queueKey':'Queue', 'haltKey':'Halt','debugKey': 'DEBUG'}
+    default_params = {'neighborsKey': 'Neighbors', 'weightKey': 'Weight', 
+                      'linkStatusKey':'LinkStatus', 'levelKey': 'Level', 
+                      'nameKey': 'Name', 'inBranchKey': 'InBranch', 
+                      'testEdgeKey':'TestEdge','findCountKey':'FindCount', 
+                      'bestWtKey':'BestWeight','bestEdgeKey':'BestEdge',
+                      'queueKey':'Queue', 'haltKey':'Halt','debugKey': 'DEBUG',
+                      'finalState':'State'}
 
     def initializer(self):
         ini_nodes = []
+
+                
        
         for node in self.network.nodes():
             node.memory[self.neighborsKey] = node.compositeSensor.read()['Neighbors']                        
+
             self.initialize(node)
             node.status = 'SLEEPING'
 #            if random()<0.3:                #random initializers
 #                ini_nodes.append(node)
+
+
+        net = self.network
+        for node,neighbors in net.adjacency_iter():
+            for neighbor,eattr in neighbors.items():
+                weight=eattr['weight']
+                print('%.3f' % (weight))
+
+
         ini_nodes.append(self.network.nodes()[0])
+
+
 
         print("Inicijatori: ", ini_nodes)                
         for ini_node in ini_nodes:
             self.network.outbox.insert(0, Message(header=NodeAlgorithm.INI,destination=ini_node))  # to je spontani impuls
-            
+        
+        print("ADJ",self.network.adj)            
+        
         
     def sleeping(self, node, message):
         if message.header == NodeAlgorithm.INI: #Spontaneously
@@ -159,7 +178,7 @@ class MegaMerger(NodeAlgorithm):
             node.status=j.status
             node.memory[self.inBranchKey]=j
             node.memory[self.bestEdgeKey]=None
-            node.memory[self.bestWtKey]=[sys.maxint,sys.maxint]
+            node.memory[self.bestWtKey]=[sys.maxint,sys.maxint,sys.maxint]
             destination_nodes=list()
    
             for i in  node.memory[self.linkStatusKey]:
@@ -224,8 +243,8 @@ class MegaMerger(NodeAlgorithm):
                 node.memory[self.findCountKey]=node.memory[self.findCountKey]-1
                 print(m,w)
                 print("m==w",m==w)
-                #if m==w : ##compare lista pitanje dal radi, što ako je m!=[sys.maxint,sys.maxint]?!
-#                if m!=None and m==w and m!=[sys.maxint,sys.maxint]:                
+                #if m==w : ##compare lista pitanje dal radi, što ako je m!=[sys.maxint,sys.maxint,sys.maxint]?!
+#                if m!=None and m==w and m!=[sys.maxint,sys.maxint,sys.maxint]:                
                 if m!=None and m==w:                
                     node.memory[self.bestWtKey]=w
                     node.memory[self.bestEdgeKey]=j
@@ -242,7 +261,7 @@ class MegaMerger(NodeAlgorithm):
             elif w==node.memory[self.bestWtKey]:
                 print("NIKADA TU?")
                 print("HALT")
-                if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint]:
+                if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint,sys.maxint]:
                     node.memory[self.debugKey]='HALT'
                     node.memory[self.haltKey]=True
 
@@ -283,7 +302,7 @@ class MegaMerger(NodeAlgorithm):
             print(node.id, "iz",node.status,"u",j.status)
             node.memory[self.inBranchKey]=j
             node.memory[self.bestEdgeKey]=None
-            node.memory[self.bestWtKey]=[sys.maxint,sys.maxint]
+            node.memory[self.bestWtKey]=[sys.maxint,sys.maxint,sys.maxint]
             destination_nodes=list()
             
             for i in  node.memory[self.linkStatusKey]:
@@ -332,8 +351,8 @@ class MegaMerger(NodeAlgorithm):
                 node.memory[self.findCountKey]=node.memory[self.findCountKey]-1
                 print(m,w)
                 print("m==w",m==w)
-                #if m==w : ##compare lista pitanje dal radi, što ako je m!=[sys.maxint,sys.maxint]?!
-#                if m!=None and m==w and m!=[sys.maxint,sys.maxint]:
+                #if m==w : ##compare lista pitanje dal radi, što ako je m!=[sys.maxint,sys.maxint,sys.maxint]?!
+#                if m!=None and m==w and m!=[sys.maxint,sys.maxint,sys.maxint]:
                 if m!=None and m==w:
                     node.memory[self.bestWtKey]=w
                     node.memory[self.bestEdgeKey]=j
@@ -349,7 +368,7 @@ class MegaMerger(NodeAlgorithm):
                 #After the two core nodes have exchanged Report message, the bestEdge saved by the fragment nodes makes it posible to trace the path from core to the node having minimum waight
             elif w==node.memory[self.bestWtKey]:
                 print("HALT")
-                if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint]:
+                if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint,sys.maxint]:
                     node.memory[self.debugKey]='HALT'
                     node.memory[self.haltKey]=True
         
@@ -371,12 +390,13 @@ class MegaMerger(NodeAlgorithm):
         node.memory[self.linkStatusKey] = {}        
         node.memory[self.weightKey] = {}
 
-        node.memory[self.bestWtKey] = None #[sys.maxint,sys.maxint]
+        node.memory[self.bestWtKey] = None #[sys.maxint,sys.maxint,sys.maxint]
         node.memory[self.testEdgeKey] = None   
         node.memory[self.bestEdgeKey] = None   
         
         for neighbor in node.memory[self.neighborsKey]:
-            node.memory[self.weightKey][neighbor] = [min(node.id, neighbor.id),max(node.id, neighbor.id)]
+            node.memory[self.weightKey][neighbor] = [0,min(node.id, neighbor.id),max(node.id, neighbor.id)]
+            
             node.memory[self.linkStatusKey][neighbor] = 'BASIC'
             
         node.memory[self.queueKey]=list()
@@ -406,11 +426,7 @@ class MegaMerger(NodeAlgorithm):
             if node.memory[self.linkStatusKey][key]=='BASIC':              
                 #test_nodes[key]=node.memory[self.linkStatusKey][key]
                 test_nodes[key]=node.memory[self.weightKey][key]
-                
-
-        print("len(test_nodes)", len(test_nodes))
-        print ("test_nodes",test_nodes)        
-        
+                  
         if len(test_nodes)!=0:
             test_node=self.min_weight_in_dict(test_nodes)
             node.memory[self.testEdgeKey]=test_node
@@ -423,8 +439,11 @@ class MegaMerger(NodeAlgorithm):
     def report(self,node):
         if node.memory[self.findCountKey]==0 and node.memory[self.testEdgeKey]==None:
             #node.status='FOUND' #when a node sends a Report Message if also goes to the state FOUND
-            node.send(Message(header="Report", data=node.memory[self.bestWtKey], destination=node.memory[self.inBranchKey]))
+            node.send(Message(header="Report", data=node.memory[self.bestWtKey], destination=node.memory[self.inBranchKey]))            
             node.status='FOUND'
+            
+            if node.memory[self.bestWtKey] == [sys.maxint,sys.maxint,sys.maxint]:
+                print (node.id, "moj bestWtKey je infinity!")
             #valjda nije bitno prije ili poslije
             
             #In particular, each leaf node of the fragment, that is
@@ -444,7 +463,8 @@ class MegaMerger(NodeAlgorithm):
         else:
             node.send(Message(header="Connect", data=0, destination=node.memory[self.bestEdgeKey])) ##Connect==Let us Merge
             node.memory[self.linkStatusKey][node.memory[self.bestEdgeKey]]='BRANCH'
-            #when this message reaches the node with minimum-weight outgoing edge, the inbound edge form a rooted tree,rooted at this node
+            #when this message reaches the node with minimum-weight outgoing edge, 
+            #the inbound edge form a rooted tree, rooted at this node
             #Finally this node sends the message Connect(L) over the minimum-weighted outgoing edge
             
     def dequeue_and_process_message(self,node):
@@ -471,7 +491,7 @@ class MegaMerger(NodeAlgorithm):
         
         return orderedDict.keys()[0]       
     
-        
+            
     def min_weight_two_lists(self,a,b):  
         
         if a[0]<b[0]:
@@ -482,6 +502,11 @@ class MegaMerger(NodeAlgorithm):
             return a
         elif b[1]>a[1]: 
             return b
+        elif b[2]>a[2]: 
+            return b
+        elif a[2]>b[2]:
+            return a
+
         else:
             return None # ==
 
