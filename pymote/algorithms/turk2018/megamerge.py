@@ -73,7 +73,7 @@ class MegaMerger(NodeAlgorithm):
               
         for ini_node in ini_nodes:
             self.network.outbox.insert(0, Message(header=NodeAlgorithm.INI,destination=ini_node))  # to je spontani impuls
-                 
+        print("inicijatori",ini_nodes)       
         
     def sleeping(self, node, message):
         
@@ -89,6 +89,7 @@ class MegaMerger(NodeAlgorithm):
             if node.memory[self.linkStatusKey][j]=='BASIC':
                 #then place received message on end of queue
                 node.memory[self.queueKey].append(message)
+                self.network.outbox.       insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
             else:
                 #send Initiate(LN + 1, w(j), Find) on edge j
                 #u data šalje novo ime i link!, ne treba si ga sam postavljati!
@@ -140,7 +141,7 @@ class MegaMerger(NodeAlgorithm):
                  node.memory[self.findCountKey]=node.memory[self.findCountKey]+1
                  #Due to our strategy of never making a low level fragment wait, node n' (reciever) immediatly 
                  #sends an Initiate message with identity and level parameteters of F' and L' to n                 
-                 print("absorbtion ", node.memory[self.nameKey], " apsorbita ", j.memory[self.nameKey] )
+                 print("absorbtion ", node.memory[self.nameKey], " apsorbira ", j.memory[self.nameKey] )
                  #If node n' has not yet sent its report message at the given level, 
                  #fragment F simpley joins fragment F' and participates in finding the minimum-weight outgoing edge from the enlarged fragment...
             
@@ -148,6 +149,8 @@ class MegaMerger(NodeAlgorithm):
 			 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
                 node.memory[self.queueKey].append(message)
+                self.network.outbox.       insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
+                self.network.outbox.       insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
             else:
                 #send Initiate(LN + 1, w(j), Find) on edge j
                 #node.memory[self.levelKey]=node.memory[self.levelKey]+1
@@ -191,6 +194,7 @@ class MegaMerger(NodeAlgorithm):
                 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source)) 
                 node.memory[self.queueKey].append(message)
+                self.network.outbox.       insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
             elif j.memory[self.nameKey] != node.memory[self.nameKey]:
                 node.send(Message(header="Accept", data=0, destination=j))
                 #when a node a sends an Accept message in response to B's Test message, then the fragment identity of A differs and will continue to differ, from B's current fragment identity
@@ -247,6 +251,7 @@ class MegaMerger(NodeAlgorithm):
                 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=w,destination=node, source=message.source))                 
                 node.memory[self.queueKey].append(message)
+                self.network.outbox.       insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
                 #pass
             elif m==node.memory[self.bestWtKey]:
                 self.change_root(node)
@@ -276,12 +281,13 @@ class MegaMerger(NodeAlgorithm):
                  #then we can deduce that outgoing edge from node n' (receiver) 
                  #has a lower weight than minimum-weight outgoing edge from F (sender of Connect)
                  #this eliminates the necessity for F to join the search for the minimum-weight outgoing edge
-                 print("absorbtion ", node.memory[self.nameKey], " apsorbita ", j.memory[self.nameKey] )
+                 print("absorbtion ", node.memory[self.nameKey], " apsorbira ", j.memory[self.nameKey] )
                  
             elif node.memory[self.linkStatusKey][j]=='BASIC':
 			 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))
                 node.memory[self.queueKey].append(message)
+                self.network.outbox.       insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
             else:
                 #send Initiate(LN + 1, w(j), Find) on edge j
                 #node.memory[self.levelKey]=node.memory[self.levelKey]+1
@@ -328,6 +334,7 @@ class MegaMerger(NodeAlgorithm):
                 #then place received message on end of queue
                 #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source)) 
                 node.memory[self.queueKey].append(message)
+                self.network.outbox.       insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
                 #..if the recieving node's fragment level is less than that of the test message
                 #then the recieving node delays any response until its own level increasses sufficiently
             elif j.memory[self.nameKey] != node.memory[self.nameKey]: 
@@ -368,6 +375,7 @@ class MegaMerger(NodeAlgorithm):
                 #self.network.outbox.insert(0, Message(header=message.header,data=w,destination=node, source=message.source))                 
                 print("NIKADA TU?")
                 node.memory[self.queueKey].append(message)
+                self.network.outbox.       insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
                 #pass
             elif m==node.memory[self.bestWtKey]:
                 self.change_root(node)
