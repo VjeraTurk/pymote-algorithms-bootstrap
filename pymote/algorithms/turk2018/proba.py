@@ -9,11 +9,10 @@ Created on Fri Jun 22 14:53:54 2018
 """
 from pymote import NetworkGenerator
 from pymote.npickle import read_pickle, write_pickle
+from networkx import minimum_spanning_tree, prim_mst_edges, prim_mst, spring_layout
 from pymote.network import Network
 from pymote.simulation import Simulation
-from networkx import minimum_spanning_tree, prim_mst_edges, prim_mst
-from networkx import draw, Graph,  draw_networkx_edges, spring_layout
-from networkx import  draw_networkx_edge_labels, get_node_attributes
+from networkx import draw, Graph,  draw_networkx_edges, draw_networkx_edge_labels, get_node_attributes
 from pylab import show, figure
 import random
 
@@ -44,12 +43,14 @@ test_net.show()
 test_sum= test_net.size(weight='weight')
 
 
-sim = Simulation(net)
-sim.run()
+#sim = Simulation(net)
+#sim.run()
 
 exclude = list()
 exclude.append('Neighbors')
 
+print "banana"
+print("banana")
 for node in net.nodes():
 
     print node.id, node.status       
@@ -61,5 +62,5 @@ for node in net.nodes():
  
     print  "\n"
     
-print("MST Sum ", test_sum)
+#print("MST Sum ", test_sum)
 

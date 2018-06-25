@@ -9,31 +9,34 @@ Created on Fri Jun 22 14:53:54 2018
 """
 from pymote import NetworkGenerator
 from pymote.npickle import read_pickle, write_pickle
-from networkx import cycle_graph, minimum_spanning_tree, spring_layout
 from pymote.network import Network
-from networkx import draw, Graph, draw_networkx_edges, draw_networkx_edge_labels, get_node_attributes
+from networkx import minimum_spanning_tree, prim_mst_edges, prim_mst
+from networkx import draw, Graph,  draw_networkx_edges, spring_layout
+from networkx import  draw_networkx_edge_labels, get_node_attributes
 from pylab import show, figure
 import random
 
 
 #Generate random weighted network
-"""
-net_gen = NetworkGenerator(10)
+
+net_gen = NetworkGenerator(7)
 net = net_gen.generate_random_network()
 
 net.show()
 print(net.nodes())
 g = Graph()
 g.adj=net.adj
+#definirati l da se osigura količina ponavljanja istih weightova
+l=len(net.nodes())-1
 
 for node,neighbors in net.adjacency_iter():
     for neighbor,eattr in neighbors.items():
         print(neighbor)        
-        g.add_edge(node,neighbor, weight=random.randrange(1,len(net.nodes())-3,1)) # -3 osigura ponavljanje       
+        g.add_edge(node,neighbor, weight=random.randrange(1,l,1)) 
         
 net.adj=g.adj
 write_pickle(net, 'RandomBezAlg.tar.gz')
-"""
+
 
 #### Primjer mreze sa sva tri slucaja-  Absorbtion, Friendly Merge i Suspenssion
 """
@@ -60,7 +63,7 @@ write_pickle(net, 'allCasesBezAlg.tar.gz')
 """
 
 ### Primjer mreze sa worst-case slučajem
-#"""
+"""
 net = Network()
 
 node= net.add_node(pos=[150,50])
@@ -84,7 +87,7 @@ g.add_edge(net.nodes()[3],net.nodes()[4],weight=4.414)
 net.adj=g.adj
 net.show()
 write_pickle(net, 'WorstCaseBezAlg.tar.gz')
-#"""
+"""
 
 #nacrtaj s težinama, 
 #pozicija nodova nije uredu?! Kako izvući poziciju?
@@ -99,7 +102,6 @@ edge_labels=dict([((u,v,),d['weight'])
 draw_networkx_edge_labels(g,pos,edge_labels=edge_labels)
 # show graphs
 show()
-
 
 #Prsina mreza za test
 """
