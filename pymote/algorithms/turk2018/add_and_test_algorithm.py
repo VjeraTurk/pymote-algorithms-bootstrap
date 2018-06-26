@@ -42,24 +42,41 @@ test_net.show()
 test_sum= test_net.size(weight='weight')
 
 
-sim = Simulation(net)
-sim.run()
 
-exclude = list()
-exclude.append('Neighbors')
 
-for node in net.nodes():
+dobro=True
 
-    print node.id, node.status       
-    for key in node.memory:
-        print key, ':\t',node.memory[key]
-        
-        #for value in node.memory[key]:
-         #   print value
- 
-    print  "\n"
+while dobro==True:
+
+    print("********************************\nNova simulacija")
+    net.algorithms = (MegaMerger,)    
     
-print("MST Sum ", test_sum)
+    sim = Simulation(net)
+    sim.run()
+    
+    exclude = list()
+    exclude.append('Neighbors')
+    
+    one_name=net.nodes()[0].memory['Name']
+    
+    for node in net.nodes():
+    
+        if node.memory['Name']!=one_name:
+            dobro=False
+    
+        print(node.memory['Name'],one_name,node.memory['Name']==one_name)
+        print node.id, node.status       
+    
+        for key in node.memory:
+            print key, ':\t',node.memory[key]
+            #for value in node.memory[key]:
+             #   print value 
+        print  "\n"
+    
+    print(one_name)
+    print("jedno ime =", dobro)
+    print("MST Sum ", test_sum)
+    
 
 pos=spring_layout(net.pos)
 pos=net.pos #Ako pos nije izvuceno iz net.pos rasporede se tako da se bolje vide
@@ -74,8 +91,6 @@ draw_networkx_nodes(g,pos=pos)
 draw_networkx_edges(g,pos=pos)
 draw_networkx_labels(g,pos=pos,labels=net.labels)
 draw_networkx_edge_labels(g,pos=pos,edge_labels=edge_labels)
-
 # show graphs
 show()
-
 

@@ -211,14 +211,16 @@ class MegaMerger(NodeAlgorithm):
                         node.memory[self.findCountKey]=node.memory[self.findCountKey]+1
             node.send(Message(header="Initiate", data=0, destination=destination_nodes)) #broadcast po svom stablu
             print(node.id, "broadcast Initiate ", destination_nodes)            
+            if new_level>old_level and len(node.memory[self.queueKey])>0:
+                self.dequeue_and_process_message(node)  
+                
             if node.status=='FIND':
                 # When a node recieves this initiate message it starts to find 
                 # its minimum-weight outgoing edge
                 # moze li ovdje pop iz queue?!
                            
                 self.test(node)
-            if new_level>old_level and len(node.memory[self.queueKey])>0:
-                self.dequeue_and_process_message(node)  
+
 
                 
 
@@ -361,12 +363,14 @@ class MegaMerger(NodeAlgorithm):
             node.send(Message(header="Initiate", data=0, destination=destination_nodes))
             print(node.id, "broadcast Initiate ", destination_nodes)           
 
-            if node.status=='FIND':
-                self.test(node)
-            
             if new_level>old_level and len(node.memory[self.queueKey])>0:
                 self.dequeue_and_process_message(node)            
             #pop iz queue?
+                
+            if node.status=='FIND':
+                self.test(node)
+            
+
                 
 #The nodes in fragment F go into state Find or Found depending on this parameter 
 #of the initiate message, and they send Test messages only in the Find state.
@@ -511,7 +515,6 @@ class MegaMerger(NodeAlgorithm):
             node.send(Message(header="Report", data=node.memory[self.bestWtKey], destination=node.memory[self.inBranchKey]))            
             print(node.id, "saljem report tezine svog najlakseg linka ", node.memory[self.bestWtKey], "svome parentu", node.memory[self.inBranchKey].id)
 
-            
             if node.memory[self.bestWtKey] == [sys.maxint,sys.maxint,sys.maxint]:
                 print (node.id, "moj bestWtKey je infinity!")
                 node.memory[self.debugKey]='TERMINATED'
