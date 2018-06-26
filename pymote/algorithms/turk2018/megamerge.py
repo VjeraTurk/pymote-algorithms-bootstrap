@@ -70,7 +70,7 @@ class MegaMerger(NodeAlgorithm):
             if random()<0.3:                #random initializers
                 ini_nodes.append(node)
         #jedan inicijator
-        #ini_nodes.append(self.network.nodes()[0])
+        #ini_nodes.append(self.network.nodes()[3])
 
         net = self.network
         for node,neighbors in net.adjacency_iter():
@@ -217,12 +217,8 @@ class MegaMerger(NodeAlgorithm):
             if node.status=='FIND':
                 # When a node recieves this initiate message it starts to find 
                 # its minimum-weight outgoing edge
-                # moze li ovdje pop iz queue?!
-                           
+                # moze li ovdje pop iz queue?!                           
                 self.test(node)
-
-
-                
 
         if message.header=="Test":
             j=message.source
@@ -301,8 +297,7 @@ class MegaMerger(NodeAlgorithm):
     def found(self,node,message):
 
         if message:
-            print(node.id, " in ", node.status, " primio " , message.header, " od ", message.source.id)
-        
+            print(node.id, " in ", node.status, " primio " , message.header, " od ",message.source.id)
         if message.header=="Connect":
             j=message.source
             
@@ -365,12 +360,9 @@ class MegaMerger(NodeAlgorithm):
 
             if new_level>old_level and len(node.memory[self.queueKey])>0:
                 self.dequeue_and_process_message(node)            
-            #pop iz queue?
-                
+            #pop iz queue?      
             if node.status=='FIND':
                 self.test(node)
-            
-
                 
 #The nodes in fragment F go into state Find or Found depending on this parameter 
 #of the initiate message, and they send Test messages only in the Find state.
@@ -542,14 +534,33 @@ class MegaMerger(NodeAlgorithm):
             #Finally this node sends the message Connect(L) over the minimum-weighted outgoing edge
             
     def dequeue_and_process_message(self,node):
-        
+        #kopirano iz find ILI found
         #while len(node.memory[self.queueKey])>0: nece biti dobro s porukama visokih levela        
         lenght=len(node.memory[self.queueKey])
-        while lenght>0 and len(node.memory[self.queueKey])>0:                
+        while lenght>0 and len(node.memory[self.queueKey])>0: #and ili or                
             message=node.memory[self.queueKey].pop()
             lenght=lenght-1             
             print(node.id,node.status, "pop", message.header, message.source.id)
-    
+
+            if message.header=="Test":
+                j=message.source
+                #if j.memory[self.levelKey]>node.memory[self.levelKey]:                
+                    #then place received message on end of queue
+                #    node.memory[self.queueKey].append(message)
+                #    print(node.id, "ja sada ne mogu odgovoriti jer je moj level manji od ", j.id, "?")
+                #elif j.memory[self.nameKey] != node.memory[self.nameKey]: 
+                if j.memory[self.nameKey] != node.memory[self.nameKey]: 
+                    node.send(Message(header="Accept", data=0, destination=j))
+                    #when a node a sends an Accept message in response to B's Test message, then the fragment identity of A differs and will continue to differ, from B's current fragment identity
+                else:
+                    if node.memory[self.linkStatusKey][j]=='BASIC':
+                       node.memory[self.linkStatusKey][j]='REJECTED'
+                       #if node.memory[self.testEdgeKey]!=j or node.memory[self.testEdgeKey]==None:
+                       if node.memory[self.testEdgeKey]!=j:
+                           node.send(Message(header="Reject", data=0, destination=j))
+                       #else:
+                           #self.test(node)    
+                
             if message.header=="Connect":
                 j=message.source
                 
@@ -594,6 +605,7 @@ class MegaMerger(NodeAlgorithm):
                 elif node.status=='FIND':
                     #then place received message on end of queue
                     node.memory[self.queueKey].append(message)
+                    print("TO SE DESI")
                     print(node.id, "ne mogu proslijediti jer jos uvijek trazim (FIND)?!")
                     print(node.id, "nisam dobio odgovor na Test?")
                     #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
@@ -605,8 +617,8 @@ class MegaMerger(NodeAlgorithm):
                     print("HALT")
                     if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint,sys.maxint]:
                         node.memory[self.debugKey]='HALT'
-                        node.memory[self.haltKey]=True      
-        
+                        node.memory[self.haltKey]=True
+                    
         
     def adjacent_node_of_minimum_weight(self,d):        
         orderedDict = collections.OrderedDict(sorted(d.iteritems(), key=lambda (k,v):v[0]))            

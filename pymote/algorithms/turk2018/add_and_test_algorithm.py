@@ -42,12 +42,29 @@ test_net.show()
 test_sum= test_net.size(weight='weight')
 
 
+pos=spring_layout(net.pos)
+pos=net.pos #Ako pos nije izvuceno iz net.pos rasporede se tako da se bolje vide
+
+figure(3)
+#draw(g,pos)
+# specifiy edge labels explicitly
+edge_labels=dict([((u,v,),d['weight'])
+             for u,v,d in g.edges(data=True)])
+
+draw_networkx_nodes(g,pos=pos)
+draw_networkx_edges(g,pos=pos)
+draw_networkx_labels(g,pos=pos,labels=net.labels)
+draw_networkx_edge_labels(g,pos=pos,edge_labels=edge_labels)
+# show graphs
+show()
+
 
 
 dobro=True
+count=0
 
 while dobro==True:
-
+    count=count+1    
     print("********************************\nNova simulacija")
     net.algorithms = (MegaMerger,)    
     
@@ -78,19 +95,5 @@ while dobro==True:
     print("MST Sum ", test_sum)
     
 
-pos=spring_layout(net.pos)
-pos=net.pos #Ako pos nije izvuceno iz net.pos rasporede se tako da se bolje vide
-
-figure(3)
-#draw(g,pos)
-# specifiy edge labels explicitly
-edge_labels=dict([((u,v,),d['weight'])
-             for u,v,d in g.edges(data=True)])
-
-draw_networkx_nodes(g,pos=pos)
-draw_networkx_edges(g,pos=pos)
-draw_networkx_labels(g,pos=pos,labels=net.labels)
-draw_networkx_edge_labels(g,pos=pos,edge_labels=edge_labels)
-# show graphs
-show()
+print("count",count)
 
