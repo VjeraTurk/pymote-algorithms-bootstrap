@@ -10,9 +10,8 @@ Created on Fri Jun 22 14:53:54 2018
 from pymote import NetworkGenerator
 from pymote.npickle import read_pickle, write_pickle
 from pymote.network import Network
-from networkx import minimum_spanning_tree, prim_mst_edges, prim_mst
-from networkx import draw, Graph,  draw_networkx_edges, spring_layout
-from networkx import  draw_networkx_edge_labels, get_node_attributes
+from networkx import minimum_spanning_tree, prim_mst_edges, prim_mst, draw, Graph,  draw_networkx_edges, spring_layout, draw_networkx_edge_labels, draw_networkx_nodes,draw_networkx_labels
+
 from pylab import show, figure
 import random
 
@@ -95,11 +94,16 @@ write_pickle(net, 'WorstCaseBezAlg.tar.gz')
 pos=spring_layout(net.pos)
 #pos=get_node_attributes(g,net.pos)
 figure(2)
-draw(g,pos)
+#draw(g,pos)
 # specifiy edge labels explicitly
 edge_labels=dict([((u,v,),d['weight'])
              for u,v,d in g.edges(data=True)])
-draw_networkx_edge_labels(g,pos,edge_labels=edge_labels)
+#pos=net.pos #Ako pos nije izvuceno iz net.pos rasporede se tako da se bolje vide
+draw_networkx_nodes(g,pos=pos, node_size=500)
+draw_networkx_edges(g,pos=pos)
+draw_networkx_labels(g,pos=pos,labels=net.labels)
+draw_networkx_edge_labels(g,pos=pos,edge_labels=edge_labels)
+
 # show graphs
 show()
 
