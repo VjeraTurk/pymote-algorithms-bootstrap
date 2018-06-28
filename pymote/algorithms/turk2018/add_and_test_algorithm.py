@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-#%load_ext autoreload
-#%autoreload 2
-#%reload_ext autoreload
 """
 Created on Fri Jun 22 14:53:54 2018
 
 @author: admin
+
+%load_ext autoreload
+%autoreload 2
+%reload_ext autoreload
 """
-from pymote import NetworkGenerator
+#from pymote import NetworkGenerator
 from pymote.npickle import read_pickle, write_pickle
 from pymote.network import Network
 from pymote.simulation import Simulation
@@ -15,41 +16,26 @@ from networkx import minimum_spanning_tree, prim_mst_edges, prim_mst, draw, Grap
 from pylab import show, figure
 import random
 
-
 #from pymote.algorithms.turk2018.megamerge_p import MegaMerger
 from pymote.algorithms.turk2018.megamerge import MegaMerger
 
-test_net = net = read_pickle('RandomBezAlg.tar.gz')
-#test_net = net = read_pickle('WorstCaseBezAlg.tar.gz')
+test_net = read_pickle('RandomBezAlg.tar.gz')
+net = read_pickle('RandomBezAlg.tar.gz')
+#test_net = read_pickle('WorstCaseBezAlg.tar.gz')
 net.show()
-
-
-net.algorithms = (MegaMerger,)
-write_pickle(net, 'RandomSAlg.tar.gz')
-#write_pickle(net, 'WorstCaseSAlg.tar.gz')
-##s ovom mrezom pokretati GUI simulator
+#
+figure(2)
+#draw(g,pos)
+# specifiy edge labels explicitly
 
 g = Graph()
 g.adj=net.adj
 
-#Uses Kruskal’s algorithm.
-#If the graph edges do not have a weight attribute 
-#a default weight of 1 will be used.
-#test_graph = minimum_spanning_tree(net)
-test_graph=prim_mst(net)
-test_net.adj=test_graph.adj
-test_net.show()
-test_sum= test_net.size(weight='weight')
-
+edge_labels=dict([((u,v,),d['weight'])
+             for u,v,d in g.edges(data=True)])
 
 pos=spring_layout(net.pos)
 pos=net.pos #Ako pos nije izvuceno iz net.pos rasporede se tako da se bolje vide
-
-figure(3)
-#draw(g,pos)
-# specifiy edge labels explicitly
-edge_labels=dict([((u,v,),d['weight'])
-             for u,v,d in g.edges(data=True)])
 
 draw_networkx_nodes(g,pos=pos)
 draw_networkx_edges(g,pos=pos)
@@ -59,11 +45,17 @@ draw_networkx_edge_labels(g,pos=pos,edge_labels=edge_labels)
 show()
 
 
+net.algorithms = (MegaMerger,)
+write_pickle(net, 'RandomSAlg.tar.gz')
+
+#write_pickle(net, 'WorstCaseSAlg.tar.gz')
+##s ovom mrezom pokretati GUI simulator
 
 dobro=True
 count=0
 
-while dobro==True:
+while dobro==True and count<25:
+    
     count=count+1    
     print("********************************\nNova simulacija")
     net.algorithms = (MegaMerger,)    
@@ -88,12 +80,22 @@ while dobro==True:
             print key, ':\t',node.memory[key]
             #for value in node.memory[key]:
              #   print value 
-        print  "\n"
-    
-    print(one_name)
-    print("jedno ime =", dobro)
-    print("MST Sum ", test_sum)
-    
+        print  "\n"    
 
 print("count",count)
 
+
+#Uses Kruskal’s algorithm.
+#If the graph edges do not have a weight attribute 
+#a default weight of 1 will be used.
+#test_graph = minimum_spanning_tree(net)
+test_graph=prim_mst(net)
+test_net.adj=test_graph.adj
+#test_net.show()
+test_sum= test_net.size(weight='weight')
+
+
+print(one_name)
+print("jedno ime =", dobro)
+print("MST Sum ", test_sum)
+    

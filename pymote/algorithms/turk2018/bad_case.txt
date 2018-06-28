@@ -1,0 +1,13 @@
+('inicijatori', [<Node id=147>, <Node id=142>, <Node id=144>, <Node id=146>])
+('inicijatori', [<Node id=144>, <Node id=142>, <Node id=147>])
+('inicijatori', [<Node id=145>, <Node id=146>, <Node id=147>])
+('inicijatori', [<Node id=146>, <Node id=142>, <Node id=147>])
+('inicijatori', [<Node id=147>, <Node id=146>])
+('inicijatori', [<Node id=144>])
+('inicijatori', [<Node id=142>])
+
+#Kod 144 skoro uvije ostaje Report od 142
+
+('inicijatori', [<Node id=145>, <Node id=146>])
+
+('inicijatori', [<Node id=142>, <Node id=141>])
