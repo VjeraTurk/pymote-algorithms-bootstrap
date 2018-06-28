@@ -73,14 +73,16 @@ while dobro==True and count<25:
         if node.memory['Name']!=one_name:
             dobro=False
     
-        print(node.memory['Name'],one_name,node.memory['Name']==one_name)
-        print node.id, node.status       
+        #print(node.memory['Name'],one_name,node.memory['Name']==one_name)
+        #print node.id, node.status       
     
-        for key in node.memory:
-            print key, ':\t',node.memory[key]
+        #for key in node.memory:
+         #   print key, ':\t',node.memory[key]
             #for value in node.memory[key]:
              #   print value 
-        print  "\n"    
+        #print  "\n"    
+
+
 
 print("count",count)
 
