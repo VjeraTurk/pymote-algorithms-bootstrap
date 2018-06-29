@@ -17,7 +17,7 @@ import random
 
 
 #Generate random weighted network
-
+"""
 net_gen = NetworkGenerator(7)
 net = net_gen.generate_random_network()
 
@@ -36,7 +36,7 @@ for node,neighbors in net.adjacency_iter():
 net.adj=g.adj
 write_pickle(net, 'RandomBezAlg.tar.gz')
 
-
+"""
 #### Primjer mreze sa sva tri slucaja-  Absorbtion, Friendly Merge i Suspenssion
 """
 net = Network()
@@ -62,9 +62,9 @@ write_pickle(net, 'allCasesBezAlg.tar.gz')
 """
 
 ### Primjer mreze sa worst-case slučajem
-"""
-net = Network()
 
+net = Network()
+node= net.add_node(pos=[100,50])
 node= net.add_node(pos=[150,50])
 node= net.add_node(pos=[100,200])
 node= net.add_node(pos=[400,200])
@@ -72,21 +72,28 @@ node= net.add_node(pos=[250,300])
 node= net.add_node(pos=[350,50])
 
 g = Graph()
-g.add_edge(net.nodes()[0],net.nodes()[1],weight=1)
-g.add_edge(net.nodes()[0],net.nodes()[2],weight=2.5)
-g.add_edge(net.nodes()[0],net.nodes()[3],weight=3.66)
-g.add_edge(net.nodes()[0],net.nodes()[4],weight=1.414)
-g.add_edge(net.nodes()[1],net.nodes()[2],weight=2)
-g.add_edge(net.nodes()[1],net.nodes()[3],weight=3.33)
-g.add_edge(net.nodes()[1],net.nodes()[4],weight=2.414)
-g.add_edge(net.nodes()[2],net.nodes()[3],weight=3)
-g.add_edge(net.nodes()[2],net.nodes()[4],weight=3.414)
-g.add_edge(net.nodes()[3],net.nodes()[4],weight=4.414)
+g.add_edge(net.nodes()[0],net.nodes()[1],weight=0.5)
+
+g.add_edge(net.nodes()[1],net.nodes()[2],weight=1.414)
+g.add_edge(net.nodes()[1],net.nodes()[3],weight=2.414)
+g.add_edge(net.nodes()[1],net.nodes()[4],weight=3.414)
+g.add_edge(net.nodes()[1],net.nodes()[5],weight=4.414)
+
+g.add_edge(net.nodes()[2],net.nodes()[3],weight=1)
+g.add_edge(net.nodes()[3],net.nodes()[4],weight=2)
+g.add_edge(net.nodes()[4],net.nodes()[5],weight=3)
+
+
+g.add_edge(net.nodes()[2],net.nodes()[4],weight=2.5)
+g.add_edge(net.nodes()[2],net.nodes()[5],weight=3.66)
+g.add_edge(net.nodes()[3],net.nodes()[5],weight=3.33)
+
+
 
 net.adj=g.adj
 net.show()
 write_pickle(net, 'WorstCaseBezAlg.tar.gz')
-"""
+
 
 #nacrtaj s težinama, 
 #pozicija nodova nije uredu?! Kako izvući poziciju?
@@ -99,10 +106,10 @@ figure(2)
 edge_labels=dict([((u,v,),d['weight'])
              for u,v,d in g.edges(data=True)])
 #pos=net.pos #Ako pos nije izvuceno iz net.pos rasporede se tako da se bolje vide
-draw_networkx_nodes(g,pos=pos, node_size=500)
-draw_networkx_edges(g,pos=pos)
-draw_networkx_labels(g,pos=pos,labels=net.labels)
-draw_networkx_edge_labels(g,pos=pos,edge_labels=edge_labels)
+draw_networkx_nodes(g,pos=net.pos, node_size=500)
+draw_networkx_edges(g,pos=net.pos)
+draw_networkx_labels(g,pos=net.pos,labels=net.labels)
+draw_networkx_edge_labels(g,pos=net.pos,edge_labels=edge_labels)
 
 # show graphs
 show()

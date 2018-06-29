@@ -19,8 +19,14 @@ import random
 #from pymote.algorithms.turk2018.megamerge_p import MegaMerger
 from pymote.algorithms.turk2018.megamerge import MegaMerger
 
-test_net = read_pickle('RandomBezAlg.tar.gz')
-net = read_pickle('RandomBezAlg.tar.gz')
+#test_net = read_pickle('RandomBezAlg.tar.gz')
+#net = read_pickle('RandomBezAlg.tar.gz')
+
+
+test_net = read_pickle('WorstCaseBezAlg.tar.gz')
+net = read_pickle('WorstCaseBezAlg.tar.gz')
+
+
 #test_net = read_pickle('WorstCaseBezAlg.tar.gz')
 net.show()
 #
@@ -37,7 +43,7 @@ edge_labels=dict([((u,v,),d['weight'])
 pos=spring_layout(net.pos)
 pos=net.pos #Ako pos nije izvuceno iz net.pos rasporede se tako da se bolje vide
 
-draw_networkx_nodes(g,pos=pos)
+draw_networkx_nodes(g,pos=pos, node_size=500)
 draw_networkx_edges(g,pos=pos)
 draw_networkx_labels(g,pos=pos,labels=net.labels)
 draw_networkx_edge_labels(g,pos=pos,edge_labels=edge_labels)
@@ -73,14 +79,14 @@ while dobro==True and count<25:
         if node.memory['Name']!=one_name:
             dobro=False
     
-        #print(node.memory['Name'],one_name,node.memory['Name']==one_name)
-        #print node.id, node.status       
+        print(node.memory['Name'],one_name,node.memory['Name']==one_name)
+        print node.id, node.status       
     
-        #for key in node.memory:
-         #   print key, ':\t',node.memory[key]
+        for key in node.memory:
+            print key, ':\t',node.memory[key]
             #for value in node.memory[key]:
-             #   print value 
-        #print  "\n"    
+                #print value 
+        print  "\n"    
 
 
 
