@@ -29,8 +29,13 @@ BASIC/UNUSED       Basic if the edge is neither a branch nor rejected.
 
 
 Test/Outside?
+l=[node.memory[self.levelKey],node.memory[self.nameKey]]
+
 Connect/Let us merge
+
 Initiate/(broadcast information)Notification
+message.data=[node.memory[self.levelKey]+1,new_name,'FIND']
+
 Change Root
 
 """
@@ -77,22 +82,19 @@ class MegaMerger(NodeAlgorithm):
         
         
     def sleeping(self, node, message):
-        
-        
+               
         if message.header == NodeAlgorithm.INI: #Spontaneously
             self.wake_up(node) 
 
         if message.header!=NodeAlgorithm.INI:
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], " primio ", " in ", node.status  , message.header, " od ", message.source.id)
        
-        ###100%
         if message.header=="Connect":
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "budi me", message.source.id)
             self.wake_up(node)
             self.receipt_of_connect(node,message)                        
             #True: j.memory[self.levelKey]> || == node.memory[self.levelKey]       
-
-        ###100%     
+    
         if message.header=="Test":
             self.wake_up(node) # posljedica node.status='FOUND' i poslana porka 'Connect'      
             self.receipt_of_test(node,message)                                 
@@ -100,90 +102,119 @@ class MegaMerger(NodeAlgorithm):
     def find(self,node,message):
 
         if message:
-            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], " primio ", " in ", node.status  , message.header, " od ", message.source.id)
-            node.memory[self.queueKey].append(message)        
-            lenght=len(node.memory[self.queueKey])
+            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], " primio ", " in ", node.status  , message.header, " od ", message.source.id)       
         
-        while lenght>0:
-            message=node.memory[self.queueKey].pop()
+#        if message:
+#            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey],"obraduje", " in ", node.status , message.header, " od ", message.source.id)
+                   
+        if message.header=="Connect":
+            self.receipt_of_connect(node,message)
+                
+        if message.header=="Initiate":
             
-            if message:
-                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey],"obraduje", " in ", node.status , message.header, " od ", message.source.id)
+            old_level=node.memory[self.levelKey]
+            self.receipt_of_initiate(node,message)
+            new_level=node.memory[self.levelKey]            
             
-            lenght=lenght-1 #Kada vraća poruku u red trebao bi povećati lenght u odr. slucaju (ovisno o levelu poruke)?!
-            
-            if message.header=="Connect":
-                self.receipt_of_connect(node,message)
-                    
-            if message.header=="Initiate":
-                self.receipt_of_initiate(node,message)
-            
-            if message.header=="Report":
-                self.receipt_of_report(node,message)
+            if new_level>old_level and len(node.memory[self.queueKey])>0:
+                m=node.memory[self.queueKey].pop() ##Mozda tu?
+                print(node.id, "Tu sam")
+                if node.status=="FIND": 
+                    self.find(node,m)
+                else:
+                    self.found(node,m)
+        
+        if message.header=="Report":
+            self.receipt_of_report(node,message)
 
-            if message.header=="Test":
-                self.receipt_of_test(node,message)
+        if message.header=="Test":
+            self.receipt_of_test(node,message)
+
+        if message.header=="Accept":
+            j=message.source
+            node.memory[self.testEdgeKey]=None
+            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "compare after Accept", node.memory[self.weightKey][j], node.memory[self.bestWtKey])           
+            w=node.memory[self.weightKey][j]
+            if w[0]<node.memory[self.bestWtKey][0] or (w[0]==node.memory[self.bestWtKey][0] and w[1]<node.memory[self.bestWtKey][1]) or ( w[0]==node.memory[self.bestWtKey][0] and w[1]==node.memory[self.bestWtKey][1] and w[2]<node.memory[self.bestWtKey][2]):
+                node.memory[self.bestEdgeKey]=j
+                node.memory[self.bestWtKey]=node.memory[self.weightKey][j]
+                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey],"azuriram svoj bestWt i Edge")
+            self.report(node) 
+
+        if message.header=="Reject":
+            j=message.source
+            if node.memory[self.linkStatusKey][j] == 'BASIC':   
+                node.memory[self.linkStatusKey][j] = 'REJECTED' #..both nodes put the edge state in the Rejected state
+            self.test(node) #Test next # Uvuci za jedan ili ne?
+
+        if message.header=="Change Root":
+            self.change_root(node)
+            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "change root")
     
-            if message.header=="Accept":
-                j=message.source
-                node.memory[self.testEdgeKey]=None
-                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "compare after Accept", node.memory[self.weightKey][j], node.memory[self.bestWtKey])           
-                w=node.memory[self.weightKey][j]
-                if w[0]<node.memory[self.bestWtKey][0] or (w[0]==node.memory[self.bestWtKey][0] and w[1]<node.memory[self.bestWtKey][1]) or ( w[0]==node.memory[self.bestWtKey][0] and w[1]==node.memory[self.bestWtKey][1] and w[2]<node.memory[self.bestWtKey][2]):
-                    node.memory[self.bestEdgeKey]=j
-                    node.memory[self.bestWtKey]=node.memory[self.weightKey][j]
-                    print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey],"azuriram svoj bestWt i Edge")
-                self.report(node) 
-    
-            if message.header=="Reject":
-                j=message.source
-                if node.memory[self.linkStatusKey][j] == 'BASIC':   
-                    node.memory[self.linkStatusKey][j] = 'REJECTED' #..both nodes put the edge state in the Rejected state
-                self.test(node) #Test next # Uvuci za jedan ili ne?
-    
-            if message.header=="Change Root":
-                self.change_root(node)
-                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "change root")
-        
         if len(node.memory[self.queueKey])>0:
-            print("ima još poruka u queue")
+            print(node.id, "ima poruka u queue")
             print(node.memory[self.queueKey])
 
     def found(self,node,message):
 
         if message:
-           print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], " in ", node.status, " primio " , message.header, " od ",message.source.id)
+           print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], " primio " , " in ", node.status, message.header, " od ",message.source.id)
 
-           node.memory[self.queueKey].append(message)        
-           lenght=len(node.memory[self.queueKey])
+#        if message:
+#            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey],"obraduje", " in ", node.status , message.header, " od ", message.source.id)
+
+        if message.header=="Connect":
+            self.receipt_of_connect(node,message)
+            
+        if message.header=="Initiate":
+            
+            old_level=node.memory[self.levelKey]
+            self.receipt_of_initiate(node,message)
+            new_level=node.memory[self.levelKey]   
+            
+            if new_level>old_level and len(node.memory[self.queueKey])>0:
+                                
+                m=node.memory[self.queueKey].pop() ##Mozda tu?
+                print(node.id, "Tu sam")
+                if node.status=="FIND": 
+                    self.find(node,m)
+                else:
+                    self.found(node,m)
+
+        if message.header=="Test":
+            self.receipt_of_test(node,message)        
+                      
+        if message.header=="Report":
+            self.receipt_of_report(node,message)
         
-        while lenght>0:
-            message=node.memory[self.queueKey].pop()
-            lenght=lenght-1
+        if message.header=="Change Root":
+            self.change_root(node)
+            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "change root")
             
-            if message:
-                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey],"obraduje", " in ", node.status , message.header, " od ", message.source.id)
-
-            if message.header=="Connect":
-                self.receipt_of_connect(node,message)
-                
-            if message.header=="Initiate":
-                self.receipt_of_initiate(node,message)
-                          
-            if message.header=="Report":
-                self.receipt_of_report(node,message)
+        if message.header=="Accept":
+            j=message.source
+            node.memory[self.testEdgeKey]=None
+            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "compare after Accept", node.memory[self.weightKey][j], node.memory[self.bestWtKey])           
+            w=node.memory[self.weightKey][j]
+            if w[0]<node.memory[self.bestWtKey][0] or (w[0]==node.memory[self.bestWtKey][0] and w[1]<node.memory[self.bestWtKey][1]) or ( w[0]==node.memory[self.bestWtKey][0] and w[1]==node.memory[self.bestWtKey][1] and w[2]<node.memory[self.bestWtKey][2]):
+                node.memory[self.bestEdgeKey]=j
+                node.memory[self.bestWtKey]=node.memory[self.weightKey][j]
+                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey],"azuriram svoj bestWt i Edge")
+            self.report(node) 
+            print("NIKADA TU?")
             
-            if message.header=="Change Root":
-                self.change_root(node)
-                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "change root")
+        if message.header=="Reject":
+            j=message.source
+            if node.memory[self.linkStatusKey][j] == 'BASIC':   
+                node.memory[self.linkStatusKey][j] = 'REJECTED' #..both nodes put the edge state in the Rejected state
+            self.test(node) #Test next # Uvuci za jedan ili ne?
+            print("NIKADA TU?")
+        
+        if len(node.memory[self.queueKey])>0:
+            print(node.id, "ima poruka u queue")
+            print(node.memory[self.queueKey])
+        
                 
-            if message.header=="Accept":
-                print("NIKADA TU?")
-                
-            if message.header=="Reject":
-                print("NIKADA TU?")
-                
-
     def terminated(self,node,message):
         pass
         
@@ -249,11 +280,11 @@ class MegaMerger(NodeAlgorithm):
              
              l=[node.memory[self.levelKey],node.memory[self.nameKey],node.status]
              
-             node.send(Message(header="Initiate", data=l , destination=j))
+             node.send(Message(header="Initiate", data=l , destination=j))         
              node.memory[self.findCountKey]=node.memory[self.findCountKey]+1
              #Due to our strategy of never making a low level fragment wait, node n' (reciever) immediatly 
              #sends an Initiate message with identity and level parameteters of F' and L' to n                 
-             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "absorbtion ", node.memory[self.nameKey], " apsorbira ", j.memory[self.nameKey] )
+             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "absorbtion ", node.memory[self.nameKey], " apsorbira grad", j.memory[self.nameKey], "preko noda", j.id )
         
         elif node.memory[self.linkStatusKey][j]=='BASIC': #UNUSED
 			 #then place received message on end of queue
@@ -263,7 +294,7 @@ class MegaMerger(NodeAlgorithm):
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey]," ne odgovaram nepoznatima, moj je level manji?!", j.id)      
             #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
         else:                
-            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "svi link statusi", node.memory[self.linkStatusKey]) 
+            #print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "svi link statusi", node.memory[self.linkStatusKey]) 
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], node.memory[self.linkStatusKey][j],"je status linka prema", j.id)
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], " in ", node.status," usporedujem levele", node.memory[self.levelKey], j.memory[self.levelKey])                
         
@@ -283,16 +314,19 @@ class MegaMerger(NodeAlgorithm):
         old_level=node.memory[self.levelKey]
         node.memory[self.levelKey]=message.data[0]
         new_level=node.memory[self.levelKey]         
+        
         node.memory[self.nameKey]=message.data[1]
+        
         print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "iz",node.status,"u",message.data[2])
         node.status=message.data[2]  #ili FIND ili FOUND
+        
         node.memory[self.inBranchKey]=j #To je upitno, razlika sa knjigom!!
         node.memory[self.bestEdgeKey]=None
         node.memory[self.bestWtKey]=[sys.maxint,sys.maxint,sys.maxint]
         destination_nodes=list()
    
         for i in  node.memory[self.linkStatusKey]:
-            if i!=j and node.memory[self.linkStatusKey][i]=='BRANCH':
+            if i.id!=j.id and node.memory[self.linkStatusKey][i]=='BRANCH': #i != j
                 destination_nodes.append(i)
                 if(node.status=='FIND'):
                     node.memory[self.findCountKey]=node.memory[self.findCountKey]+1               
@@ -311,6 +345,7 @@ class MegaMerger(NodeAlgorithm):
             self.test(node)
             
     def receipt_of_test(self,node,message):
+            
             j=message.source
             L=message.data[0] # 0 je level - kasnije pretvoriti u dictionary da bude razumljivije
             N=message.data[1]
@@ -320,13 +355,17 @@ class MegaMerger(NodeAlgorithm):
                 #the test message then the recieving node delays any response 
                 #until its own level increasses sufficiently                
                 node.memory[self.queueKey].append(message)#then place received message on end of queue
-                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "ja sada ne mogu odgovoriti jer je moj level manji od ", j.id)
+                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "ja sada ne mogu odgovoriti jer je moj level manji od posiljatelja ", j.id)
                 #self.network.outbox.insert(0, Message(header=message.header,data=message.data,destination=node, source=message.source))                
             elif N != node.memory[self.nameKey]:
                 # if the node recieving node has a different identity from the test message 
                 # and if the recieving node's fragment level is greather than or equal to that of the test message
                 # then the Accept message is sent back to the sending node                    
+
+                #Ali to je staro ime? Prije absporba?
+                print("posiljatelj, primatelj", N , node.memory[self.nameKey])
                 node.send(Message(header="Accept", data=0, destination=j))
+                print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "Accepting", j.id)                 
                 #Zasto on sebi ne postavlja node u status BRANCH?
 
                 #when a node a sends an Accept message in response to B's Test message, 
@@ -338,10 +377,33 @@ class MegaMerger(NodeAlgorithm):
                 if node.memory[self.linkStatusKey][j]=='BASIC': #UNUSED
                    node.memory[self.linkStatusKey][j]='REJECTED'
                    #if node.memory[self.testEdgeKey]!=j or node.memory[self.testEdgeKey]==None:
-                if node.memory[self.testEdgeKey]!=j:
+                   print(node.id, "mijenjam status linka prema ", j)
+                if node.memory[self.testEdgeKey]!=j: #id!!!
                    node.send(Message(header="Reject", data=0, destination=j))
-                else:                    
+                   print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "Rejecting", j.id) 
+                else:
+                   print("Test!") 
                    self.test(node)
+                   
+
+    def test(self,node):
+        test_nodes={}        
+        
+        for key in node.memory[self.linkStatusKey]:
+            if node.memory[self.linkStatusKey][key]=='BASIC': #mozda ne radi?!              
+                #test_nodes[key]=node.memory[self.linkStatusKey][key]
+                test_nodes[key]=node.memory[self.weightKey][key]
+                  
+        if len(test_nodes)!=0:
+            test_node=self.adjacent_node_of_minimum_weight(test_nodes)
+            node.memory[self.testEdgeKey]=test_node
+            l=[node.memory[self.levelKey],node.memory[self.nameKey]] #SHIT
+            
+            node.send(Message(header="Test", data=l, destination=node.memory[self.testEdgeKey]))
+            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey]," najlaksi link je prema ", test_node.id, "saljem Test") #edge prestaje biti basic, postaje rejected ili branch, tako se izbjegava da ponovno bude odabran
+        else:
+            node.memory[self.testEdgeKey]=None
+            self.report(node)
                    
     def receipt_of_report(self,node,message):
         #Eventualy, the nodes adjacent to the core send Report on the core branch itself, 
@@ -362,7 +424,6 @@ class MegaMerger(NodeAlgorithm):
             #then place received message on end of queue
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "ne mogu proslijediti jer jos uvijek trazim (FIND)?!")
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "nisam dobio odgovor na Test")            
-            print("NIKADA TU?")
             node.memory[self.queueKey].append(message)
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "stavljam poruku",message.header,"od", j.id ,"u red")
             #print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey])
@@ -379,23 +440,7 @@ class MegaMerger(NodeAlgorithm):
                 node.memory[self.debugKey]='HALT'
                 node.memory[self.haltKey]=True  
                  
-    def test(self,node):
-        test_nodes={}        
-        
-        for key in node.memory[self.linkStatusKey]:
-            if node.memory[self.linkStatusKey][key]=='BASIC': #mozda ne radi?!              
-                #test_nodes[key]=node.memory[self.linkStatusKey][key]
-                test_nodes[key]=node.memory[self.weightKey][key]
-                  
-        if len(test_nodes)!=0:
-            test_node=self.adjacent_node_of_minimum_weight(test_nodes)
-            node.memory[self.testEdgeKey]=test_node
-            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey]," najlaksi link je prema ", test_node.id, "saljem Test") #edge prestaje biti basic, postaje rejected ili branch, tako se izbjegava da ponovno bude odabran
-            l=[node.status,node.memory[self.nameKey]]            
-            node.send(Message(header="Test", data=l, destination=node.memory[self.testEdgeKey]))
-        else:
-            node.memory[self.testEdgeKey]=None
-            self.report(node)
+
     
     def report(self,node):
         if node.memory[self.findCountKey]==0 and node.memory[self.testEdgeKey]==None:
@@ -403,7 +448,7 @@ class MegaMerger(NodeAlgorithm):
             #it also goes to the state FOUND
             node.status='FOUND'
             node.send(Message(header="Report", data=node.memory[self.bestWtKey], destination=node.memory[self.inBranchKey]))            
-            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "saljem report tezine svog najlakseg linka ", node.memory[self.bestWtKey], "svome parentu", node.memory[self.inBranchKey].id)
+            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "saljem report tezine svog najlakseg linka ", node.memory[self.bestWtKey], "svome parentu:", node.memory[self.inBranchKey].id)
 
 #            if node.memory[self.bestWtKey] == [sys.maxint,sys.maxint,sys.maxint]:
 #                print (node.id, "moj bestWtKey je infinity!")
@@ -427,9 +472,9 @@ class MegaMerger(NodeAlgorithm):
             node.send(Message(header="Change Root", data=0, destination=node.memory[self.bestEdgeKey]))
             print("Radi li change root?")
         else:
-            
             node.send(Message(header="Connect", data=node.memory[self.levelKey], destination=node.memory[self.bestEdgeKey]))
             node.memory[self.linkStatusKey][node.memory[self.bestEdgeKey]]='BRANCH'
+            print("IKAD?")            
             #when this message reaches the node with minimum-weight outgoing edge, 
             #the inbound edge form a rooted tree, rooted at this node
             #Finally this node sends the message Connect(L) over the minimum-weighted outgoing edge
