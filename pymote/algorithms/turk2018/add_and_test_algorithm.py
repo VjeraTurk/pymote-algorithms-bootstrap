@@ -60,7 +60,7 @@ write_pickle(net, 'RandomSAlg.tar.gz')
 dobro=True
 count=0
 
-while dobro==True and count<25:
+while dobro==True and count<5:
     
     count=count+1    
     print("********************************\nNova simulacija")

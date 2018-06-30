@@ -109,6 +109,18 @@ class MegaMerger(NodeAlgorithm):
                    
         if message.header=="Connect":
             self.receipt_of_connect(node,message)
+            
+#            l=1
+            if  len(node.memory[self.queueKey])>0:
+                m=node.memory[self.queueKey].pop() ##Mozda tu?
+                print("TUTU")
+#                l=l-1
+#                print(node.id, "Tu sam")
+                if node.status=="FIND": 
+                    self.find(node,m)
+                else:
+                    self.found(node,m)
+                m=node.memory[self.queueKey].pop()
                 
         if message.header=="Initiate":
             
@@ -164,8 +176,22 @@ class MegaMerger(NodeAlgorithm):
 #            print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey],"obraduje", " in ", node.status , message.header, " od ", message.source.id)
 
         if message.header=="Connect":
-            self.receipt_of_connect(node,message)
-            
+            self.receipt_of_connect(node,message)        
+            print("len", len(node.memory[self.queueKey]))
+          
+##            l=1
+#            if  len(node.memory[self.queueKey])>0:
+#                m=node.memory[self.queueKey].pop() ##Mozda tu?
+#                print("TUTU")
+##                l=l-1
+##                print(node.id, "Tu sam")
+#                if node.status=="FIND": 
+#                    self.find(node,m)
+#                else:
+#                    self.found(node,m)
+#                m=node.memory[self.queueKey].pop()
+
+                    
         if message.header=="Initiate":
             
             old_level=node.memory[self.levelKey]
@@ -186,6 +212,9 @@ class MegaMerger(NodeAlgorithm):
                       
         if message.header=="Report":
             self.receipt_of_report(node,message)
+            
+
+            
         
         if message.header=="Change Root":
             self.change_root(node)
@@ -279,7 +308,7 @@ class MegaMerger(NodeAlgorithm):
              #this eliminates the necessity for F to join the search for the minimum-weight outgoing edge
              
              l=[node.memory[self.levelKey],node.memory[self.nameKey],node.status]
-             
+      
              node.send(Message(header="Initiate", data=l , destination=j))         
              node.memory[self.findCountKey]=node.memory[self.findCountKey]+1
              #Due to our strategy of never making a low level fragment wait, node n' (reciever) immediatly 
@@ -302,6 +331,7 @@ class MegaMerger(NodeAlgorithm):
                 new_name=node.id
             else:
                 new_name=j.id
+                
             l=[node.memory[self.levelKey]+1,new_name,'FIND']
             node.send(Message(header="Initiate", data=l , destination=j))                                
             #u data šalje novo ime i link!, ne treba si ga sam postavljati!
@@ -310,11 +340,11 @@ class MegaMerger(NodeAlgorithm):
             #friendly merge
             
     def receipt_of_initiate(self,node,message):
+        
         j=message.source
         old_level=node.memory[self.levelKey]
         node.memory[self.levelKey]=message.data[0]
         new_level=node.memory[self.levelKey]         
-        
         node.memory[self.nameKey]=message.data[1]
         
         print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "iz",node.status,"u",message.data[2])
@@ -330,7 +360,8 @@ class MegaMerger(NodeAlgorithm):
                 destination_nodes.append(i)
                 if(node.status=='FIND'):
                     node.memory[self.findCountKey]=node.memory[self.findCountKey]+1               
-        l=message.data
+
+        l=message.data        
         node.send(Message(header="Initiate", data=l, destination=destination_nodes)) #broadcast po svom stablu
         print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "broadcast Initiate ", destination_nodes)            
         #if new_level>old_level and len(node.memory[self.queueKey])>0:
@@ -438,7 +469,8 @@ class MegaMerger(NodeAlgorithm):
             print("HALT")
             if w==node.memory[self.bestWtKey] and node.memory[self.bestWtKey]==[sys.maxint,sys.maxint,sys.maxint]:
                 node.memory[self.debugKey]='HALT'
-                node.memory[self.haltKey]=True  
+                node.memory[self.haltKey]=True
+        
                  
 
     
@@ -449,6 +481,15 @@ class MegaMerger(NodeAlgorithm):
             node.status='FOUND'
             node.send(Message(header="Report", data=node.memory[self.bestWtKey], destination=node.memory[self.inBranchKey]))            
             print(node.id, "lvl:", node.memory[self.levelKey],"n:",node.memory[self.nameKey], "saljem report tezine svog najlakseg linka ", node.memory[self.bestWtKey], "svome parentu:", node.memory[self.inBranchKey].id)
+
+            if len(node.memory[self.queueKey])>0:
+                                
+                m=node.memory[self.queueKey].pop() ##Mozda tu?
+                print(node.id, "Tu sam")
+                if node.status=="FIND": 
+                    self.find(node,m)
+                else:
+                    self.found(node,m)
 
 #            if node.memory[self.bestWtKey] == [sys.maxint,sys.maxint,sys.maxint]:
 #                print (node.id, "moj bestWtKey je infinity!")
